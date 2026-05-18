@@ -1,0 +1,15 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: jobsearcher-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: midzospa
+      MONGO_INITDB_ROOT_PASSWORD: 3VcdcelzsTWGNkApcA6x8PsW
+      MONGO_INITDB_DATABASE: jobsearcher
+
+volumes:
+  mongo_data:
