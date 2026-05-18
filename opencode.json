@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "RapidAPI Hub - JSearch (Mega)": {
+      "type": "local",
+      "command": [
+        "npx",
+        "mcp-remote",
+        "https://mcp.rapidapi.com",
+        "--header",
+        "x-api-host: jsearch-mega.p.rapidapi.com",
+        "--header",
+        "x-api-key: 85cfc3de26mshfabb3d31c657479p185ef8jsnee7d232d48b5"
+      ]
+    },
+    "RapidAPI Hub - LinkedIn Jobs": {
+      "type": "local",
+      "command": [
+        "npx",
+        "mcp-remote",
+        "https://mcp.rapidapi.com",
+        "--header",
+        "x-api-host: linkedin-jobs12.p.rapidapi.com",
+        "--header",
+        "x-api-key: 85cfc3de26mshfabb3d31c657479p185ef8jsnee7d232d48b5"
+      ]
+    },
+    "RapidAPI Hub - LinkedIn Job Search API": {
+      "type": "local",
+      "command": [
+        "npx",
+        "mcp-remote",
+        "https://mcp.rapidapi.com",
+        "--header",
+        "x-api-host: linkedin-job-search-api.p.rapidapi.com",
+        "--header",
+        "x-api-key: 85cfc3de26mshfabb3d31c657479p185ef8jsnee7d232d48b5"
+      ]
+    }
+  }
+}

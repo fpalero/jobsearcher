@@ -1,0 +1,42 @@
+[
+  {
+    "id": "test-001",
+    "title": "Senior Software Engineer, Java",
+    "organization": "Rockstar Games",
+    "organization_url": "https://www.linkedin.com/company/rockstar-games",
+    "url": "https://uk.linkedin.com/jobs/view/senior-software-engineer-java-at-rockstar-games-4414498368",
+    "date_posted": "2026-05-14T15:30:27",
+    "locations_derived": ["Leeds, England, United Kingdom"],
+    "countries_derived": ["United Kingdom"],
+    "remote_derived": false,
+    "employment_type": ["FULL_TIME"],
+    "description_text": "At Rockstar Games, we create world-class entertainment experiences. We are on the lookout for a passionate Senior Software Engineer who is skilled at hands on development. 5+ years of professional experience in Java backend development. Deep expertise in the Spring Boot ecosystem and JPA/Hibernate.",
+    "salary_raw": null,
+    "organization_logo": "https://media.licdn.com/dms/image/v2/C4D0BAQGBAhxCc6Og5Q/company-logo_200_200/0/1630456992601/rockstar_games_logo",
+    "source_domain": "uk.linkedin.com",
+    "seniority": "Mid-Senior level",
+    "linkedin_org_industry": "Computer Games",
+    "linkedin_org_employees": 5206,
+    "linkedin_org_url": "http://www.rockstargames.com"
+  },
+  {
+    "id": "test-002",
+    "title": "Senior Software Engineer - Java",
+    "organization": "Future",
+    "organization_url": "https://www.linkedin.com/company/future-publishing",
+    "url": "https://fr.linkedin.com/jobs/view/senior-software-engineer-java-at-future-4410617736",
+    "date_posted": "2026-05-13T15:48:31",
+    "locations_derived": ["Grenoble, Auvergne-Rhône-Alpes, France"],
+    "countries_derived": ["France"],
+    "remote_derived": true,
+    "employment_type": ["FULL_TIME"],
+    "description_text": "Future is looking for a Senior Software Engineer with experience in web and software applications development and Agile teamwork. You have 5 or more years of experience building Java applications.",
+    "salary_raw": null,
+    "organization_logo": "https://media.licdn.com/dms/image/v2/C4E0BAQHsk5yjnJT2uQ/company-logo_200_200/0/1631313680343",
+    "source_domain": "fr.linkedin.com",
+    "seniority": "Confirm\u00e9",
+    "linkedin_org_industry": "Media Production",
+    "linkedin_org_employees": 3908,
+    "linkedin_org_url": "http://www.futureplc.com"
+  }
+]
