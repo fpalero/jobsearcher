@@ -39,6 +39,7 @@ def esc_text(text: str) -> str:
     text = text.replace("}", "\\}")
     text = text.replace("[", "\\[")
     text = text.replace("]", "\\]")
+    text = re.sub(r'(?<!\*)\*(?!\*)', r'\\*', text)
     return text
 
 
@@ -200,10 +201,12 @@ def _normalize_cert_entries(data: dict) -> list[tuple]:
 
 def _split_project_desc(desc: str) -> list[str]:
     parts = desc.split("\n")
-    parts = [p.strip() for p in parts if p.strip()]
+    parts = [re.sub(r'^[\*\-\•]\s+', '', p.strip()) for p in parts]
+    parts = [p for p in parts if p]
     if len(parts) > 1:
         return parts
     parts = re.split(r'(?=\*\*[^*]+\*\*:)', desc)
+    parts = [re.sub(r'^[\*\-\•]\s+', '', p.strip()) for p in parts]
     return [p.strip() for p in parts if p.strip()]
 
 def _render_projects(data: dict) -> str:
