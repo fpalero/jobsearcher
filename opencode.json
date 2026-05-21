@@ -2,11 +2,12 @@
   "$schema": "https://opencode.ai/config.schema.json",
   "mcp": {
     "stitch": {
-      "type": "remote",
-      "url": "https://stitch.googleapis.com/mcp",
-      "enabled": true,
-      "headers": {
-        "X-Goog-Api-Key": "${STITCH_API_KEY}"
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "@_davideast/stitch-mcp", "proxy"],
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "${GOOGLE_CLOUD_PROJECT}",
+        "STITCH_API_KEY": "${STITCH_API_KEY}"
       }
     },
     "RapidAPI Hub - JSearch (Mega)": {

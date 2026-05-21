@@ -199,6 +199,17 @@ def _normalize_cert_entries(data: dict) -> list[tuple]:
     return [(l, "", "", "") for l in lines]
 
 
+def _convert_inline_bold(text: str) -> str:
+    bold_pattern = re.compile(r'\*\*(.+?)\*\*')
+    parts = bold_pattern.split(text)
+    result = []
+    for i, part in enumerate(parts):
+        if i % 2 == 1:
+            result.append(f'#text(weight: "bold")[{esc_text(part)}]')
+        elif part:
+            result.append(esc_text(part))
+    return "".join(result)
+
 def _split_project_desc(desc: str) -> list[str]:
     parts = desc.split("\n")
     parts = [re.sub(r'^[\*\-\•]\s+', '', p.strip()) for p in parts]
@@ -208,6 +219,18 @@ def _split_project_desc(desc: str) -> list[str]:
     parts = re.split(r'(?=\*\*[^*]+\*\*:)', desc)
     parts = [re.sub(r'^[\*\-\•]\s+', '', p.strip()) for p in parts]
     return [p.strip() for p in parts if p.strip()]
+
+def _ensure_bold_name(line: str, project_name: str = "") -> str:
+    bolded = _convert_inline_bold(line)
+    if bolded.startswith('#text(weight: "bold")'):
+        return bolded
+    if ":" in line:
+        name, rest = line.split(":", 1)
+        name_val = name.strip()
+        rest_val = rest.strip()
+        if name_val:
+            return f'#text(weight: "bold")[{esc_text(name_val)}]: {_convert_inline_bold(rest_val)}'
+    return bolded
 
 def _render_projects(data: dict) -> str:
     val = data.get("technical_projects", "")
@@ -224,7 +247,11 @@ def _render_projects(data: dict) -> str:
                 for p in _split_project_desc(desc):
                     if re.match(r'^[A-Z][a-z]+ \d{4}\s*[-–]\s*(Present|\d{4})$', p):
                         continue
-                    out.append(f"- {esc_text(p)}")
+                    if name and p.strip() == name:
+                        continue
+                    if re.match(r'^\*?[A-Z][a-z]+ \d{4}\s*[-–]\s*(Present|\d{4})\*?$', p.strip()):
+                        continue
+                    out.append(f"- {_ensure_bold_name(p, name)}")
                 out.append("")
     else:
         text = _stripped(str(val))
@@ -235,7 +262,7 @@ def _render_projects(data: dict) -> str:
                     continue
                 if re.match(r'^[A-Z][a-z]+ \d{4}\s*[-–]\s*(Present|\d{4})$', p):
                     continue
-                out.append(f"- {esc_text(p)}")
+                out.append(f"- {_ensure_bold_name(p)}")
                 out.append("")
     return "\n".join(out)
 
