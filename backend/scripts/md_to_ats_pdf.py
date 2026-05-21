@@ -234,7 +234,7 @@ def _ensure_bold_name(line: str, project_name: str = "") -> str:
 
 def _render_projects(data: dict) -> str:
     val = data.get("technical_projects", "")
-    out: list[str] = ["= Technical Projects", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
+    out: list[str] = ["== Technical Projects", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
     if isinstance(val, list):
         for proj in val:
             if not isinstance(proj, dict):
@@ -269,7 +269,7 @@ def _render_projects(data: dict) -> str:
 
 def _render_skills(data: dict) -> str:
     skills_val = data.get("skills", "")
-    out: list[str] = ["= Skills", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
+    out: list[str] = ["== Skills", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
     if isinstance(skills_val, dict):
         for cat, txt in skills_val.items():
             cat = cat.strip()
@@ -298,7 +298,7 @@ def _render_skills(data: dict) -> str:
 
 def _render_education(data: dict) -> str:
     entries = _normalize_education_entries(data)
-    out: list[str] = ["= Education", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
+    out: list[str] = ["== Education", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
     if entries:
         for entry in entries:
             inst, loc, _, _, degree, start_date, end_date, score, _ = entry
@@ -327,7 +327,7 @@ def _render_education(data: dict) -> str:
 
 def _render_certifications(data: dict) -> str:
     entries = _normalize_cert_entries(data)
-    out: list[str] = ["= Certifications"]
+    out: list[str] = ["== Certifications"]
     if entries:
         for entry in entries:
             name, issuer, _, date = entry
@@ -341,7 +341,7 @@ def _render_certifications(data: dict) -> str:
 
 def _render_section(title: str, body: str) -> str:
     lines: list[str] = []
-    lines.append(f"= {esc_text(title)}")
+    lines.append(f"== {esc_text(title)}")
     for paragraph in body.strip().split("\n\n"):
         paragraph = paragraph.strip()
         if paragraph:
@@ -367,7 +367,7 @@ def construir_codigo_typst(data: dict) -> str:
 
     out: list[str] = []
     out.append(base_import)
-    out.append("\n")
+    out.append("#let smallcaps(body) = body\n")
 
     name = esc(contact.get("name", ""))
     email = esc(contact.get("email", ""))
@@ -425,7 +425,7 @@ def construir_codigo_typst(data: dict) -> str:
     if isinstance(languages_text, str) and languages_text.strip():
         lang_items = _parse_multiline_items(languages_text)
         if lang_items:
-            lines = ["= Languages", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
+            lines = ["== Languages", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
             for item in lang_items:
                 if ":" in item:
                     name, rest = item.split(":", 1)
