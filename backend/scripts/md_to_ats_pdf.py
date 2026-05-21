@@ -242,7 +242,7 @@ def _render_skills(data: dict) -> str:
             if not cat and not txt:
                 continue
             if cat:
-                out.append(f"- **{esc_text(cat)}**: {esc_text(txt)}")
+                out.append(f"- #text(weight: \"bold\")[{esc_text(cat)}]: {esc_text(txt)}")
             else:
                 out.append(f"- {esc_text(txt)}")
     else:
@@ -254,7 +254,7 @@ def _render_skills(data: dict) -> str:
                     continue
                 parts = line.split(":", 1)
                 if len(parts) == 2 and parts[0].strip():
-                    out.append(f"- **{esc_text(parts[0].strip())}**: {esc_text(parts[1].strip())}")
+                    out.append(f"- #text(weight: \"bold\")[{esc_text(parts[0].strip())}]: {esc_text(parts[1].strip())}")
                 else:
                     out.append(f"- {esc_text(line)}")
     out.append("")
