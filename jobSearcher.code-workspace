@@ -1,8 +1,26 @@
 {
 	"folders": [
 		{
+			"path": "frontend",
+		},
+		{
+			"path": "backend",
+		},
+		{
+			"path": "devops",
+		},
+		{
+			"name": "ROOT / CONFIG",
 			"path": "."
-		}
+		},
 	],
-	"settings": {}
+	"settings": {
+		"files.exclude": {
+			"frontend/": true,
+			"backend/": true,
+			"devops/": true,
+			"**/.git": true,
+			"**/node_modules": true,
+		},
+	},
 }

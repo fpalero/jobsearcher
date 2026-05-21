@@ -1,11 +1,11 @@
 # Fernando Palero Molina
-fpalero1986@gmail.com | +49 176 81268878 | Germany | LinkedIn: linkedin.com/in/fernandopalero
+fpalero1986@gmail.com • +49 176 81268878 • Germany • [linkedin.com](https://www.linkedin.com/in/fernando-palero-molina/)
 
 ## PROFILE HEADLINE
-Senior Software Engineer | Java & Microservices Specialist | Cloud Architect | AI & Multi-Agent Systems Engineer | Technical Team Lead
+Senior Software Engineer, Java & Microservices Specialist, Cloud Architect, AI & Multi-Agent Systems Engineer, Technical Team Lead
 
 ## PROFESSIONAL SUMMARY
-Results-driven Senior Software Engineer and Technical Team Lead with over 12 years of experience designing, scaling, and delivering high-performance backend systems and advanced AI/LLM applications. Expert in Java microservices, cloud architectures (AWS & Azure), and software craftsmanship (DDD, Hexagonal Architecture, SOLID). Pioneer in building complex full-stack multi-agent AI solutions using Python, LangChain, LangGraph, LlamaIndex, Angular, and Prisma. Proven track record leading monolith-to-microservices migrations, optimizing cloud infrastructure, and mentoring high-performing engineering teams in international remote environments.
+Senior Software Engineer and Technical Team Lead with over 12 years of enterprise experience specializing in Java microservices, cloud architectures (AWS & Azure), and software craftsmanship (DDD, SOLID). Proven track record leading monolith-to-microservices migrations and mentoring high-performing engineering teams in remote environments. Deeply specialized through advanced technical projects and professional certifications in building full-stack Agentic AI solutions utilizing Python, LangGraph, LangChain, and semantic RAG retrieval.
 
 ## SKILLS
 * **AI & Intelligent Systems**: Multi-Agent Architectures, LangGraph, LangChain, LlamaIndex, Prompt Engineering, Local LLMs, Retrieval-Augmented Generation (RAG), Machine Learning Metrics.
@@ -17,80 +17,80 @@ Results-driven Senior Software Engineer and Technical Team Lead with over 12 yea
 
 ## TECHNICAL PROJECTS
 
-### Lead AI Engineer & Full-Stack Developer | Intelligent Applications | Personal Portfolio
+### Lead AI Engineer & Full-Stack Developer — Intelligent Applications (Personal Portfolio)
 *January 2026 – Present*
-* **Automated Order Management Chatbot**: Conceptualized and built an autonomous conversational agent utilizing **Python, LangChain, and local LLMs** to handle commercial orders. Implemented advanced LLM framing for intent extraction and commercial constraint validation. Built the full-stack management UI with **Appsmith and Nextcloud**, managing a robust **Prisma/PostgreSQL** relational data layer. Containerized the infrastructure via **Docker/Devcontainers** and automated deployment to **AWS EC2** with comprehensive PyTest suites.
-* **Multi-Agent Personal Coach & Trainer Platform**: Engineered a sophisticated multi-agent system using **LangGraph, LangChain, and LlamaIndex** for semantic RAG data retrieval. Developed an advanced **OpenCV/MediaPipe computer vision pipeline** to identify complex athlete tricks through real-time pose estimation and benchmark performance against database metrics. Designed a hybrid storage system using **Prisma with PostgreSQL and MongoDB** for unstructured fitness analytics, delivering the UI via **Angular/TypeScript** integrated with **AWS S3**.
-* **IPSF Sports Advisor**: Designed a regulatory compliance assistant for international pole sports utilizing **Claude models** within a multi-agent framework. Implemented precise semantic RAG retrieval and rulebook validation using **LangGraph, LangChain, and LlamaIndex**. Architected the system with **Angular, Appsmith dashboards, and Nextcloud** document federation, managing compliant data structures across **PostgreSQL and MongoDB** with automated Python/Angular QA matrices.
+* **Automated Order Management Chatbot**: Conceptualized and built an autonomous conversational agent utilizing Python, LangChain, and local LLMs to handle commercial orders. Implemented advanced LLM framing for intent extraction and commercial constraint validation. Built the full-stack management UI with Appsmith and Nextcloud, managing a robust Prisma/PostgreSQL relational data layer. Containerized the infrastructure via Docker/Devcontainers and automated deployment to AWS EC2 with comprehensive PyTest suites.
+* **Multi-Agent Personal Coach & Trainer Platform**: Engineered a sophisticated multi-agent system using LangGraph, LangChain, and LlamaIndex for semantic RAG data retrieval. Developed an advanced OpenCV/MediaPipe computer vision pipeline to identify complex athlete tricks through real-time pose estimation and benchmark performance against database metrics. Designed a hybrid storage system using Prisma with PostgreSQL and MongoDB for unstructured fitness analytics, delivering the UI via Angular/TypeScript integrated with AWS S3.
+* **IPSF Sports Advisor**: Designed a regulatory compliance assistant for international pole sports utilizing Claude models within a multi-agent framework. Implemented precise semantic RAG retrieval and rulebook validation using LangGraph, LangChain, and LlamaIndex. Architected the system with Angular, Appsmith dashboards, and Nextcloud document federation, managing compliant data structures across PostgreSQL and MongoDB with automated Python/Angular QA matrices.
 
 ## PROFESSIONAL EXPERIENCE
 
-### Senior Software Engineer | Material One | Augsburg, Germany (Remote)
-*July 2025 – December 2025*
-* Led the greenfield development of a high-throughput data aggregation platform, establishing core Java architecture patterns and engineering standards for multi-source data integration.
-* Designed and built scalable backend microservices using Java, Spring Boot, and Spring Cloud, leveraging Domain-Driven Design (DDD) to achieve 99.9% system availability.
-* Engineered resilient cloud infrastructure using Microsoft Azure, integrating Event Hub for real-time Java streaming components, Cosmos DB, and serverless Azure Functions with secure Azure Authorization.
-* Built responsive full-stack capabilities with Angular and TypeScript, reducing data loading times on monitoring dashboards by 25%.
-* Containerized Java development environments using Docker, Docker Compose, and Devcontainers, cutting team onboarding time by 40%.
-* Developed high-performance event-driven schemas using Kafka and optimized relational databases using PostgreSQL.
-* Attained 90%+ code coverage by implementing robust automated testing pipelines with JUnit and Mockito, reducing production bugs by 15%.
+### Senior Software Engineer — Material One (Augsburg, Germany - Remote)
+*July 2025 – December 2025 (Company Layoff due to lost client contract)*
+* Accelerated multi-source data integration by leading the greenfield development of a high-throughput data aggregation platform.
+* Achieved 99.9% system availability by engineering scalable backend microservices using Java, Spring Boot, and Spring Cloud under Domain-Driven Design (DDD).
+* Built resilient cloud infrastructure on Microsoft Azure by integrating Event Hub, Cosmos DB, and serverless Azure Functions.
+* Reduced monitoring dashboard data loading times by 25% by engineering responsive full-stack components with Angular and TypeScript.
+* Cut engineering onboarding times by 40% through containerized development environments using Docker, Docker Compose, and Devcontainers.
+* Managed high-performance asynchronous communication schemas using Kafka and optimized relational databases with PostgreSQL.
+* Reduced production bugs by 15% by achieving 90%+ code coverage via automated JUnit and Mockito pipeline architectures.
 
-### Software Engineer Team Lead | Aevi | Prague, Czech Republic (Remote)
+### Software Engineer Team Lead — Aevi (Prague, Czech Republic - Remote)
 *February 2022 – February 2025*
-* Spearheaded the technical migration from a legacy monolithic architecture to a modern Java microservices and modular ecosystem, reducing infrastructure operational costs by 30%.
-* Directed and mentored an international team of 5 engineers, improving overall sprint delivery velocity by 20% through agile coaching and rigorous Java code reviews.
-* Architected resilient, cloud-native microservices based on Java, Hexagonal Architecture, and DDD principles to ensure decoupled domain logic.
-* Deployed, managed, and scaled containerized enterprise Java services across AWS cloud infrastructure using ECS and EC2.
-* Modernized core frontend modules using React and TypeScript, improving overall application responsiveness and user satisfaction scores.
-* Established CI/CD automation pipelines via GitHub Actions, decreasing software deployment cycles from days to minutes.
-* Built automated end-to-end and integration testing matrices utilizing Java, JUnit, Mockito, and Cypress, eliminating manual regression testing bottlenecks.
+* Reduced infrastructure operational costs by 30% by leading the technical migration from a legacy monolith to a Java microservices ecosystem.
+* Improved sprint delivery velocity by 20% by managing and mentoring an international team of 5 engineers through agile coaching.
+* Ensured decoupled domain logic by architecting resilient, cloud-native microservices based on Hexagonal Architecture and DDD principles.
+* Scaled containerized enterprise Java services across AWS cloud infrastructure utilizing ECS and EC2.
+* Enhanced application responsiveness and user satisfaction scores by modernizing core frontend modules using React and TypeScript.
+* Decreased software deployment cycles from days to minutes by establishing automated CI/CD pipelines via GitHub Actions.
+* Eliminated manual regression testing bottlenecks by implementing automated end-to-end testing matrices with JUnit, Mockito, and Cypress.
 
-### Software Engineer Team Lead | Saitow AG (Alzura) | Valencia, Spain
+### Software Engineer Team Lead — Saitow AG / Alzura (Valencia, Spain)
 *September 2019 – January 2022*
-* Designed and implemented highly scalable microservices-based architectures using Java for a high-traffic B2B e-commerce platform processing thousands of transactions daily.
-* Led end-to-end feature delivery, maximizing cloud resource utilization and improving backend system responsiveness by 15%.
-* Enforced clean coding standards, SOLID principles, and architecture governance, significantly reducing technical debt.
-* Successfully migrated services to AWS (ECS, EC2) using Docker and Docker Compose, introducing Devcontainers to standardize environment parity across teams.
-* Supervised full-stack feature alignments using React and TypeScript to ensure seamless frontend-backend integration.
-* Secured continuous delivery guardrails through GitHub Actions and drove rigorous data storage optimizations using PostgreSQL.
-* Guaranteed application responsiveness through extensive automated test suites using JUnit, Mockito, and Cypress.
+* Processed thousands of daily transactions by designing highly scalable microservices architectures using Java for a high-traffic B2B e-commerce platform.
+* Improved backend system responsiveness by 15% through optimized end-to-end feature delivery and cloud resource utilization.
+* Reduced technical debt significantly by enforcing clean coding standards, SOLID principles, and strict architecture governance.
+* Eliminated environment disparities across teams by migrating enterprise workflows to AWS (ECS, EC2) using Docker, Docker Compose, and Devcontainers.
+* Ensured seamless frontend-backend integration by supervising full-stack feature alignments with React and TypeScript.
+* Secured continuous delivery guardrails using GitHub Actions paired with optimized PostgreSQL data storage.
+* Guaranteed high application responsiveness by writing extensive automated test suites using JUnit, Mockito, and Cypress.
 
-### Software Analyst | Backend Developer | Koukio | Valencia, Spain
+### Software Analyst / Backend Developer — Koukio (Valencia, Spain)
 *April 2017 – August 2019*
-* Enhanced core banking software (ABN AMRO), ensuring high availability, bulletproof microservices security, and 100% compliance with strict financial regulations.
+* Ensured 100% compliance with strict financial regulations by enhancing core banking software (ABN AMRO) under high availability constraints.
+* Supported concurrent transactions by transitioning on-premise financial workflows to AWS (ECS, EC2) using Domain-Driven Design (DDD).
 * Developed scalable enterprise features using Java, JBoss, Spring Boot, and Spring Cloud.
-* Transitioned on-premise financial workflows to AWS (ECS, EC2), operating under Domain-Driven Design (DDD) to support concurrent transactions.
-* Standardized containerized environments using Docker, Docker Compose, and Devcontainers to guarantee development consistency.
-* Maintained full-stack capabilities by engineering user interface components with Angular and TypeScript.
-* Automated software quality guardrails through high-coverage testing frameworks using JUnit, Mockito, and Cypress.
-* Integrated high-performance data storage systems handling robust relational schemas with PostgreSQL.
-* Streamlined continuous integration workflows by creating automated CI/CD pipelines via GitHub Actions.
-* Built a predictive AI-based error forecasting module using Python and TensorFlow, proactively preventing critical system downtime.
+* Guaranteed development environment consistency by standardizing containerized setups using Docker, Docker Compose, and Devcontainers.
+* Maintained full-stack feature delivery by engineering user interface components with Angular and TypeScript.
+* Eliminated manual QA bottlenecks by creating automated testing frameworks using JUnit, Mockito, and Cypress.
+* Managed robust relational schemas by integrating high-performance data storage systems with PostgreSQL.
+* Streamlined deployment workflows by creating automated CI/CD pipelines via GitHub Actions.
+* Prevented critical system downtime proactively by building a predictive AI-based error forecasting module using Python and TensorFlow.
 
-### Software Analyst | Backend Developer | Sopra Steria | Valencia, Spain
+### Software Analyst / Backend Developer — Sopra Steria (Valencia, Spain)
 *March 2016 – March 2017*
-* Developed and optimized mobile applications for FERMAX intercom hardware solutions utilizing Java and Android SDK, improving performance on legacy devices.
-* Engineered responsive frontend web layouts for the E.Leclerc retail platform utilizing EmberJS and JavaScript.
-* Created end-to-end automation frameworks using Selenium, JUnit, and Mockito, accelerating QA delivery release cycles by 25%.
-* Refactored tightly coupled legacy modules using SOLID design principles, improving system maintainability and readability.
+* Improved legacy device performance by developing and optimizing mobile applications for FERMAX intercom hardware utilizing Java and Android SDK.
+* Enhanced user engagement by engineering responsive frontend web layouts for the E.Leclerc retail platform utilizing EmberJS and JavaScript.
+* Accelerated QA delivery release cycles by 25% through end-to-end automation frameworks using Selenium, JUnit, and Mockito.
+* Reduced technical debt and improved maintainability by refactoring tightly coupled modules using SOLID design principles.
 
-### Project Manager | Telefónica | Valencia, Spain
+### Project Manager — Telefónica (Valencia, Spain)
 *January 2011 – January 2012*
-* Coordinated cross-functional engineering teams to implement infrastructure upgrades, telecom system optimizations, and platform modernization initiatives ahead of schedule.
+* Delivered critical infrastructure upgrades ahead of schedule by coordinating cross-functional engineering teams during telecom optimizations.
+
+## EDUCATION
+* **Master of Science (M.Sc.) – ICT Research** • Autonomous University of Madrid, Spain (2014 - 2016)
+* **Bachelor of Science (B.Sc.) – Computer Science Engineering** • Polytechnic University of Valencia, Spain (2004 - 2010)
+
+## CERTIFICATIONS
+* **Scrum Master** • Scrum.org • *Issued Feb 2019*
+* **Kotlin for Java Developers** • JetBrains • *Issued Mar 2026*
+* **AI Agents and Agentic AI with Python & Generative AI** • Vanderbilt University • *Issued Mar 2026*
+* **Develop Generative AI Applications: Get Started** • IBM • *Issued May 2026*
+* **Build RAG Applications: Get Started** • IBM • *Issued May 2026*
+* **Generative AI: Prompt Engineering Basics** • Coursera • *Issued May 2025*
 
 ## LANGUAGES
 * **English**: Full Professional Proficiency
 * **Spanish**: Native / Bilingual Proficiency
-* **German**: Beginner/Basic Proficiency
-
-## EDUCATION
-* **Master of Science (M.Sc.) – ICT Research** | Autonomous University of Madrid, Spain (2014 - 2016)
-* **Bachelor of Science (B.Sc.) – Computer Science Engineering** | Polytechnic University of Valencia, Spain (2004 - 2010)
-
-## CERTIFICATIONS
-* Scrum Master | Scrum.org | Issued Feb 2019
-* Kotlin for Java Developers | JetBrains | Issued Mar 2026
-* AI Agents and Agentic AI with Python & Generative AI | Vanderbilt University | Issued Mar 2026
-* Develop Generative AI Applications: Get Started | IBM | Issued May 2026
-* Build RAG Applications: Get Started | IBM | Issued May 2026
-* Generative AI: Prompt Engineering Basics | Coursera | Issued May 2025
+* **German**: Beginner / Basic Proficiency
