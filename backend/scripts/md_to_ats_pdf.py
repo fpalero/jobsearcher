@@ -198,6 +198,14 @@ def _normalize_cert_entries(data: dict) -> list[tuple]:
     return [(l, "", "", "") for l in lines]
 
 
+def _split_project_desc(desc: str) -> list[str]:
+    parts = desc.split("\n")
+    parts = [p.strip() for p in parts if p.strip()]
+    if len(parts) > 1:
+        return parts
+    parts = re.split(r'(?=\*\*[^*]+\*\*:)', desc)
+    return [p.strip() for p in parts if p.strip()]
+
 def _render_projects(data: dict) -> str:
     val = data.get("technical_projects", "")
     out: list[str] = ["= Technical Projects"]
@@ -210,10 +218,7 @@ def _render_projects(data: dict) -> str:
             if name:
                 out.append(f"=== {esc_text(name)}")
             if desc:
-                for p in desc.split("\n"):
-                    p = p.strip()
-                    if not p:
-                        continue
+                for p in _split_project_desc(desc):
                     if re.match(r'^[A-Z][a-z]+ \d{4}\s*[-–]\s*(Present|\d{4})$', p):
                         continue
                     out.append(f"- {esc_text(p)}")
