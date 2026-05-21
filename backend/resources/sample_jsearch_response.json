@@ -1,0 +1,96 @@
+{
+  "status": "OK",
+  "request_id": "dry-run-sample",
+  "parameters": {
+    "query": "Senior Software Engineer Java remote Europe",
+    "page": 1,
+    "num_pages": 1,
+    "date_posted": "week",
+    "remote_jobs_only": true,
+    "employment_types": "FULLTIME"
+  },
+  "data": [
+    {
+      "job_id": "jsearch-sample-001",
+      "employer_name": "TechCorp GmbH",
+      "employer_logo": null,
+      "employer_website": "https://techcorp.example.com",
+      "employer_company_type": "Internet And Software",
+      "job_publisher": "LinkedIn",
+      "job_employment_type": "FULLTIME",
+      "job_title": "Senior Software Engineer Java",
+      "job_apply_link": "https://example.com/job/001",
+      "job_apply_is_direct": true,
+      "apply_options": [
+        {
+          "publisher": "LinkedIn",
+          "apply_link": "https://example.com/job/001",
+          "is_direct": true
+        }
+      ],
+      "job_description": "We are looking for a Senior Software Engineer with Java expertise. Remote work across Europe.",
+      "job_is_remote": true,
+      "job_posted_at_timestamp": 1779138034,
+      "job_posted_at_datetime_utc": "2026-05-18T21:00:34.764724Z",
+      "job_city": "Berlin",
+      "job_state": null,
+      "job_country": "DE",
+      "job_latitude": 52.52,
+      "job_longitude": 13.405,
+      "job_benefits": null,
+      "job_google_link": "https://example.com/job/001",
+      "job_required_skills": ["Java", "Spring Boot", "AWS", "Kubernetes"],
+      "job_min_salary": 80000,
+      "job_max_salary": 120000,
+      "job_salary_currency": "EUR",
+      "job_salary_period": "YEAR",
+      "job_highlights": {
+        "qualifications": [],
+        "responsibilities": [],
+        "benefits": []
+      },
+      "job_posting_language": "en"
+    },
+    {
+      "job_id": "jsearch-sample-002",
+      "employer_name": "StartupAI SAS",
+      "employer_logo": null,
+      "employer_website": "https://startupai.example.com",
+      "employer_company_type": "Technology",
+      "job_publisher": "Indeed",
+      "job_employment_type": "FULLTIME",
+      "job_title": "Software Architect",
+      "job_apply_link": "https://example.com/job/002",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "Indeed",
+          "apply_link": "https://example.com/job/002",
+          "is_direct": false
+        }
+      ],
+      "job_description": "Software Architect position for a growing fintech company. Fully remote in Europe.",
+      "job_is_remote": true,
+      "job_posted_at_timestamp": 1779051634,
+      "job_posted_at_datetime_utc": "2026-05-17T21:00:34.764724Z",
+      "job_city": "Paris",
+      "job_state": null,
+      "job_country": "FR",
+      "job_latitude": 48.8566,
+      "job_longitude": 2.3522,
+      "job_benefits": null,
+      "job_google_link": "https://example.com/job/002",
+      "job_required_skills": ["Java", "Microservices", "DDD", "AWS"],
+      "job_min_salary": 90000,
+      "job_max_salary": 130000,
+      "job_salary_currency": "EUR",
+      "job_salary_period": "YEAR",
+      "job_highlights": {
+        "qualifications": [],
+        "responsibilities": [],
+        "benefits": []
+      },
+      "job_posting_language": "en"
+    }
+  ]
+}

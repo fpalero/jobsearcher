@@ -1,0 +1,40 @@
+<main class="flex-1 md:ml-[280px]">
+  <header class="mb-lg">
+    <div class="flex justify-between items-end">
+      <div>
+        <h1 class="text-headline-lg text-on-surface">@if (filterActive) {Applicable Jobs} @else {Recommended for You}</h1>
+        <p class="text-body-lg text-on-surface-variant">@if (filterActive) {Remote jobs in English, workable from Germany} @else {Based on your profile and skills.}</p>
+      </div>
+      <div class="flex gap-sm">
+        <button class="flex items-center gap-xs px-md py-sm bg-white border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors">
+          <span class="material-symbols-outlined text-body-md">tune</span>
+          <span class="text-label-md">Filters</span>
+        </button>
+        <button class="flex items-center gap-xs px-md py-sm bg-white border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors">
+          <span class="text-label-md">Sort by: Relevancy</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  @if (loading) {
+    <div class="flex items-center justify-center py-xl">
+      <span class="text-headline-md text-on-surface-variant">Loading jobs...</span>
+    </div>
+  } @else {
+    <div class="space-y-md mb-xl">
+      @for (job of jobs; track job.id) {
+        <app-job-card [job]="job" (viewDetails)="showDetails($event)"/>
+      }
+      @if (jobs.length === 0) {
+        <div class="text-center py-xl text-on-surface-variant">
+          <p class="text-body-lg">No job offers found. Start by fetching some data.</p>
+        </div>
+      }
+    </div>
+  }
+</main>
+
+@if (selectedJob) {
+  <app-job-detail-modal [job]="selectedJob" (close)="closeDetails()"/>
+}

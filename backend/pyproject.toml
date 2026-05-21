@@ -1,0 +1,27 @@
+[project]
+name = "jobsearcher"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "requests",
+    "pymongo",
+    "python-dotenv",
+    "weasyprint>=68.1",
+    "markdown>=3.10.2",
+    "typst>=0.14.9",
+    "fastapi",
+    "uvicorn[standard]",
+    "langchain>=0.3.0",
+    "langchain-anthropic>=0.3.0",
+    "langchain-openai>=0.3.0",
+]
+
+[project.scripts]
+md2ats = "scripts.md_to_ats_pdf:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
