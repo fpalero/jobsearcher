@@ -1,0 +1,84 @@
+<div class="fixed inset-0 z-[100] flex items-center justify-center p-md sm:p-lg bg-on-surface/40" style="backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);" id="modal-container" (click)="onBackdropClick($event)">
+  <div class="bg-surface-container-lowest w-full max-w-[840px] max-h-[921px] flex flex-col rounded-xl shadow-[0px_8px_40px_rgba(15,23,42,0.15)] overflow-hidden relative border border-outline-variant/20" style="animation: fadeIn 0.3s ease">
+    <button class="absolute top-lg right-lg z-20 w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-on-surface-variant hover:bg-error-container hover:text-error transition-all duration-200" (click)="close.emit()">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="px-xl pt-xl pb-lg border-b border-outline-variant/10 flex flex-col md:flex-row md:items-end justify-between gap-lg bg-surface-container-low/50">
+      <div class="space-y-sm">
+        <div class="flex items-center gap-md">
+          <img [src]="job.logoUrl" alt="Company Logo" class="w-14 h-14 rounded-xl shadow-sm bg-white p-2 object-contain" (error)="logoError = true" [class.hidden]="logoError">
+          @if (logoError) {
+            <span class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center text-headline-lg text-on-surface-variant font-bold">{{ job.company.charAt(0) }}</span>
+          }
+          <div>
+            <div class="flex items-center">
+              <h1 class="text-headline-lg text-on-surface">{{ job.title }}</h1>
+              <button class="ml-4 px-md py-xs bg-primary text-on-primary font-bold text-label-md rounded-xl hover:bg-primary-container active:scale-95 transition-all duration-200 shadow-sm" (click)="openApplyLink()">Apply Now</button>
+            </div>
+            <p class="text-headline-md text-primary">{{ job.company }}</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-md pt-sm">
+          <div class="flex items-center gap-xs text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px]">schedule</span>
+            <span class="text-label-md">Posted {{ job.postedDate }}</span>
+          </div>
+          <div class="flex items-center gap-xs text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px]">location_on</span>
+            <span class="text-label-md">{{ job.location }}</span>
+          </div>
+          <div class="flex items-center gap-xs text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px]">payments</span>
+            <span class="text-label-md">{{ job.salary }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col items-center gap-xs">
+        <div class="relative w-16 h-16 flex items-center justify-center">
+          <svg class="w-full h-full match-ring" viewBox="0 0 64 64">
+            <circle class="text-surface-container-highest" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"/>
+            <circle class="text-secondary" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor"
+                    stroke-dasharray="176" [attr.stroke-dashoffset]="176 - (job.matchPercentage / 100) * 176" stroke-width="4"/>
+          </svg>
+          <span class="absolute inset-0 flex items-center justify-center font-data-mono text-data-mono text-secondary">{{ job.matchPercentage }}%</span>
+        </div>
+        <span class="text-label-md text-secondary uppercase tracking-wider">Top Match</span>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-xl py-lg space-y-xl bg-white">
+      <section>
+        <h2 class="text-headline-md text-on-surface mb-md">About the Role</h2>
+        <p class="text-body-lg text-on-surface-variant leading-relaxed whitespace-pre-line">{{ job.description }}</p>
+      </section>
+      <section>
+        <h2 class="text-headline-md text-on-surface mb-md">Tags</h2>
+        <div class="flex flex-wrap gap-sm mb-lg">
+          @for (tag of job.tags; track tag) {
+            <span class="bg-surface-container-high text-on-surface-variant px-md py-xs rounded-xl text-label-md border border-outline-variant/30">{{ tag }}</span>
+          }
+          @if (job.tags.length === 0) {
+            <span class="text-body-md text-on-surface-variant">No tags available</span>
+          }
+        </div>
+      </section>
+    </div>
+    <div class="px-xl py-lg bg-surface-container-low border-t border-outline-variant/10 flex flex-col sm:flex-row items-center justify-end gap-md">
+      <button class="w-full sm:w-auto px-lg py-md border border-outline text-on-surface-variant text-body-md rounded-xl hover:bg-surface-container-highest transition-all duration-200 flex items-center justify-center gap-sm" (click)="generateCoverLetter()" [class.opacity-50]="generating" [class.cursor-not-allowed]="generating" [disabled]="generating">
+        @if (generating) {
+          <span class="inline-block w-4 h-4 border-2 border-on-surface-variant border-t-transparent rounded-full animate-spin"></span>
+        } @else {
+          <span class="material-symbols-outlined">description</span>
+        }
+        {{ generating ? 'Generating...' : 'Generate Cover Letter' }}
+      </button>
+      <button class="w-full sm:w-auto px-xl py-md bg-primary text-on-primary text-body-md rounded-xl hover:bg-primary-container active:scale-95 transition-all duration-200 flex items-center justify-center gap-sm shadow-md" (click)="generateTailoredCV()" [class.opacity-50]="generating" [class.cursor-not-allowed]="generating" [disabled]="generating">
+        @if (generating) {
+          <span class="inline-block w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
+        } @else {
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+        }
+        {{ generating ? 'Generating...' : 'Generate Tailored CV' }}
+      </button>
+    </div>
+  </div>
+</div>

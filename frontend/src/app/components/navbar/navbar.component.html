@@ -1,0 +1,17 @@
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-lg py-sm bg-surface shadow-sm max-w-container-max mx-auto" [class.shadow-md]="scrolled" [class.backdrop-blur-md]="scrolled" [style.background-color]="scrolled ? 'rgba(248, 249, 255, 0.9)' : '#f8f9ff'">
+  <div class="flex items-center gap-xl">
+    <span class="text-headline-md font-bold text-primary">TalentMatch</span>
+    <nav class="hidden md:flex gap-lg items-center">
+      <a class="text-primary border-b-2 border-primary font-bold pb-1 text-label-md" href="#">Dashboard</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md" href="#">Applications</a>
+    </nav>
+  </div>
+  <div class="flex items-center gap-md">
+    <button class="p-xs text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
+    <button class="p-xs text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined">settings</span>
+    </button>
+  </div>
+</header>
