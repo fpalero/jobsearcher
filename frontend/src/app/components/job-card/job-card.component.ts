@@ -14,7 +14,8 @@ export class JobCardComponent {
   @Output() viewDetails = new EventEmitter<Job>();
   isHovered = false;
   logoError = false;
-  generating = false;
+  generatingCV = false;
+  generatingCoverLetter = false;
 
   constructor(private jobService: JobService) {}
 
@@ -32,8 +33,8 @@ export class JobCardComponent {
 
   generateCV(event: Event) {
     event.stopPropagation();
-    if (this.generating) return;
-    this.generating = true;
+    if (this.generatingCV) return;
+    this.generatingCV = true;
     this.jobService.generateTailoredPdf(this.job.jobId).subscribe({
       next: (blob) => {
         const url = window.URL.createObjectURL(blob);
@@ -45,18 +46,18 @@ export class JobCardComponent {
       },
       error: (err) => {
         console.error('Failed to generate CV:', err);
-        this.generating = false;
+        this.generatingCV = false;
       },
       complete: () => {
-        this.generating = false;
+        this.generatingCV = false;
       },
     });
   }
 
   generateCoverLetter(event: Event) {
     event.stopPropagation();
-    if (this.generating) return;
-    this.generating = true;
+    if (this.generatingCoverLetter) return;
+    this.generatingCoverLetter = true;
     this.jobService.generateCoverLetterPdf(this.job.jobId).subscribe({
       next: (blob) => {
         const url = window.URL.createObjectURL(blob);
@@ -68,10 +69,10 @@ export class JobCardComponent {
       },
       error: (err) => {
         console.error('Failed to generate cover letter:', err);
-        this.generating = false;
+        this.generatingCoverLetter = false;
       },
       complete: () => {
-        this.generating = false;
+        this.generatingCoverLetter = false;
       },
     });
   }

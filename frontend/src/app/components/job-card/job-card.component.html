@@ -27,21 +27,21 @@
       </div>
     </div>
     <div class="flex flex-col gap-sm mr-md self-center">
-      <button class="flex items-center justify-center gap-xs px-md py-sm bg-primary text-on-primary rounded-xl font-bold transition-colors text-label-md whitespace-nowrap" (click)="generateCV($event)" [class.opacity-50]="generating" [class.cursor-not-allowed]="generating" [disabled]="generating">
-        @if (generating) {
+      <button class="flex items-center justify-center gap-xs px-md py-sm bg-primary text-on-primary rounded-xl font-bold transition-colors text-label-md whitespace-nowrap" (click)="generateCV($event)" [class.opacity-50]="generatingCV" [class.cursor-not-allowed]="generatingCV" [disabled]="generatingCV">
+        @if (generatingCV) {
           <span class="inline-block w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
         } @else {
           <span class="material-symbols-outlined text-[18px]">history_edu</span>
         }
-        {{ generating ? 'Generating...' : 'Generate CV' }}
+        {{ generatingCV ? 'Generating...' : 'Generate CV' }}
       </button>
-      <button class="flex items-center justify-center gap-xs px-md py-sm border border-primary text-primary hover:bg-surface-variant rounded-xl font-bold transition-colors text-label-md whitespace-nowrap" (click)="generateCoverLetter($event)" [class.opacity-50]="generating" [class.cursor-not-allowed]="generating" [disabled]="generating">
-        @if (generating) {
+      <button class="flex items-center justify-center gap-xs px-md py-sm border border-primary text-primary hover:bg-surface-variant rounded-xl font-bold transition-colors text-label-md whitespace-nowrap" (click)="generateCoverLetter($event)" [class.opacity-50]="generatingCoverLetter" [class.cursor-not-allowed]="generatingCoverLetter" [disabled]="generatingCoverLetter">
+        @if (generatingCoverLetter) {
           <span class="inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></span>
         } @else {
           <span class="material-symbols-outlined text-[18px]">description</span>
         }
-        {{ generating ? '...' : 'Cover Letter' }}
+        {{ generatingCoverLetter ? '...' : 'Cover Letter' }}
       </button>
       <button class="flex items-center justify-center gap-xs px-md py-sm bg-primary text-on-primary rounded-xl font-bold transition-colors text-label-md" (click)="openApplyLink($event)">
         Apply Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
