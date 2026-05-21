@@ -22,6 +22,7 @@ Rules:
 - Extract the candidate's contact info from the CV header; preserve it exactly.
 - Keep the tone professional, confident, and concise.
 - Do NOT use markdown formatting (**bold**, ## headings, * bullet points) inside JSON string values. Use plain text only.
+- EXCEPTION: For the "description" field of "technical_projects" items, you MAY preserve **bold** markers from the original CV to highlight key technologies and tools.
 - Preserve the original section order from the CV: Profile Headline, Professional Summary, Skills, Technical Projects, Professional Experience, Languages, Education, Certifications. Output the fields in this order.
 
 Return a JSON object with this exact structure:
