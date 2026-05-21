@@ -3,11 +3,6 @@
   "dockerComposeFile": "../devops/docker-compose.yml",
   "service": "frontend",
   "workspaceFolder": "/workspaces/jobsearcher",
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "20"
-    }
-  },
   "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && cd /workspaces/jobsearcher/backend && $HOME/.local/bin/uv sync",
   "customizations": {
     "vscode": {
