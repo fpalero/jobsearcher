@@ -2,11 +2,16 @@
   "$schema": "https://opencode.ai/config.schema.json",
   "mcp": {
     "stitch": {
+      "enabled": true,
       "type": "local",
-      "command": "npx",
-      "args": ["-y", "@_davideast/stitch-mcp", "proxy"],
+      "command": [
+        "npx",
+        "-y",
+        "@_davideast/stitch-mcp",
+        "proxy"
+      ],
       "env": {
-        "GOOGLE_CLOUD_PROJECT": "7677020486671384991",
+        "GOOGLE_CLOUD_PROJECT": "${GOOGLE_CLOUD_PROJECT}",
         "STITCH_API_KEY": "${STITCH_API_KEY}"
       }
     },
@@ -19,7 +24,7 @@
         "--header",
         "x-api-host: jsearch-mega.p.rapidapi.com",
         "--header",
-        "x-api-key: 85cfc3de26mshfabb3d31c657479p185ef8jsnee7d232d48b5"
+        "x-api-key: ${RAPID_API_KEY}"
       ]
     },
     "RapidAPI Hub - LinkedIn Jobs": {
@@ -31,7 +36,7 @@
         "--header",
         "x-api-host: linkedin-jobs12.p.rapidapi.com",
         "--header",
-        "x-api-key: 85cfc3de26mshfabb3d31c657479p185ef8jsnee7d232d48b5"
+        "x-api-key: ${RAPID_API_KEY}"
       ]
     },
     "RapidAPI Hub - LinkedIn Job Search API": {
@@ -43,7 +48,7 @@
         "--header",
         "x-api-host: linkedin-job-search-api.p.rapidapi.com",
         "--header",
-        "x-api-key: 85cfc3de26mshfabb3d31c657479p185ef8jsnee7d232d48b5"
+        "x-api-key: ${RAPID_API_KEY}"
       ]
     }
   }

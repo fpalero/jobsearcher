@@ -6,7 +6,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 from core.data_unified_repository import unified_jobs_collection
 from application.service.llm_config import get_llm
-from scripts.md_to_ats_pdf import md_to_ats_pdf
+from scripts.md_to_ats_pdf import markdown_to_pdf
 
 _generation_locks: dict[str, threading.Lock] = {}
 _locks_lock = threading.Lock()
@@ -90,7 +90,7 @@ def generate_cover_letter_pdf(job_id: str) -> Path:
             md_path.write_text(md_content, encoding="utf-8")
 
         try:
-            md_to_ats_pdf(md_path, pdf_path)
+            markdown_to_pdf(md_path, pdf_path)
         except Exception as e:
             raise CoverLetterError(f"Failed to convert MD to PDF: {e}") from e
 
