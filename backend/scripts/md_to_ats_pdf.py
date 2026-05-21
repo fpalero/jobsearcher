@@ -267,9 +267,13 @@ def _render_education(data: dict) -> str:
     if entries:
         for entry in entries:
             inst, loc, _, _, degree, start_date, end_date, score, _ = entry
-            parts = [f"**{esc_text(inst)}**"]
+            parts = []
             if degree:
-                parts.append(esc_text(degree))
+                parts.append(f"#text(weight: \"bold\")[{esc_text(degree)}]")
+            elif inst:
+                parts.append(f"#text(weight: \"bold\")[{esc_text(inst)}]")
+            if inst and degree:
+                parts.append(esc_text(inst))
             if loc:
                 parts.append(esc_text(loc))
             dates = []
@@ -388,7 +392,11 @@ def construir_codigo_typst(data: dict) -> str:
         if lang_items:
             lines = ["= Languages"]
             for item in lang_items:
-                lines.append(f"- {esc_text(item)}")
+                if ":" in item:
+                    name, rest = item.split(":", 1)
+                    lines.append(f"- #text(weight: \"bold\")[{esc_text(name.strip())}]:{esc_text(rest.strip())}")
+                else:
+                    lines.append(f"- {esc_text(item)}")
             render_after.append("\n".join(lines))
         else:
             render_after.append(_render_section("Languages", languages_text.strip()))
