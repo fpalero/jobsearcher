@@ -342,6 +342,9 @@ def _render_certifications(data: dict) -> str:
 def _render_section(title: str, body: str) -> str:
     lines: list[str] = []
     lines.append(f"== {esc_text(title)}")
+    lines.append("#v(-0.5em)")
+    lines.append("#line(length: 100%)")
+    lines.append("#v(-0.5em)")
     for paragraph in body.strip().split("\n\n"):
         paragraph = paragraph.strip()
         if paragraph:
