@@ -208,7 +208,7 @@ def _split_project_desc(desc: str) -> list[str]:
 
 def _render_projects(data: dict) -> str:
     val = data.get("technical_projects", "")
-    out: list[str] = ["= Technical Projects"]
+    out: list[str] = ["= Technical Projects", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
     if isinstance(val, list):
         for proj in val:
             if not isinstance(proj, dict):
@@ -239,7 +239,7 @@ def _render_projects(data: dict) -> str:
 
 def _render_skills(data: dict) -> str:
     skills_val = data.get("skills", "")
-    out: list[str] = ["= Skills"]
+    out: list[str] = ["= Skills", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
     if isinstance(skills_val, dict):
         for cat, txt in skills_val.items():
             cat = cat.strip()
@@ -268,7 +268,7 @@ def _render_skills(data: dict) -> str:
 
 def _render_education(data: dict) -> str:
     entries = _normalize_education_entries(data)
-    out: list[str] = ["= Education"]
+    out: list[str] = ["= Education", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
     if entries:
         for entry in entries:
             inst, loc, _, _, degree, start_date, end_date, score, _ = entry
@@ -395,7 +395,7 @@ def construir_codigo_typst(data: dict) -> str:
     if isinstance(languages_text, str) and languages_text.strip():
         lang_items = _parse_multiline_items(languages_text)
         if lang_items:
-            lines = ["= Languages"]
+            lines = ["= Languages", "#v(-0.5em)", "#line(length: 100%)", "#v(-0.5em)"]
             for item in lang_items:
                 if ":" in item:
                     name, rest = item.split(":", 1)
@@ -414,6 +414,8 @@ def construir_codigo_typst(data: dict) -> str:
     if work_idx >= 0 and (render_before or render_after):
         before_config = render_config[:work_idx]
         after_config = render_config[work_idx:]
+        after_lines = [l for l in after_config.split("\n") if "render-custom" not in l]
+        after_config = "\n".join(after_lines)
         combined = before_config + "\n"
         if render_before:
             combined += "\n".join(render_before) + "\n"
