@@ -452,6 +452,25 @@ def construir_codigo_typst(data: dict) -> str:
         combined = before_config + "\n"
         if render_before:
             combined += "\n".join(render_before) + "\n"
+        combined += (
+            "#let render-certificate(certificates) = {\n"
+            "  if certificates.len() == 0 { return }\n"
+            "  let section_body = certificates\n"
+            "    .map(certificate => {\n"
+            "      let post_fix = h(1fr) + certificate.date\n"
+            "      let issue_str = \" - issued by \" + certificate.issuer\n"
+            "      if certificate.issuer.len() == 0 { issue_str = \"\" }\n"
+            "      [- #certificate.name#issue_str #post_fix]\n"
+            "    })\n"
+            "    .join(v(render_space_between_highlight))\n"
+            "  [== Certificates]\n"
+            "  v(-0.5em)\n"
+            "  line(length: 100%)\n"
+            "  v(-0.5em)\n"
+            "  section_body\n"
+            "  v(render_space_between_sections)\n"
+            "}\n"
+        )
         combined += after_config + "\n"
         if render_after:
             combined += "\n".join(render_after) + "\n"
