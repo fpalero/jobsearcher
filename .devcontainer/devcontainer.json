@@ -1,0 +1,47 @@
+{
+  "name": "JobSearcher Studio",
+  "dockerComposeFile": "../devops/docker-compose.yml",
+  "service": "frontend",
+  "workspaceFolder": "/workspaces/jobsearcher",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && cd /workspaces/jobsearcher/backend && $HOME/.local/bin/uv sync",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/workspaces/jobsearcher/backend/.venv/bin/python",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        }
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "forwardPorts": [
+    8500,
+    8501
+  ],
+  "portsAttributes": {
+    "8500": {
+      "label": "Python Agent (FastAPI)",
+      "onAutoForward": "notify"
+    },
+    "8501": {
+      "label": "Frontend (Angular)",
+      "onAutoForward": "notify"
+    }
+  }
+}
