@@ -1,59 +1,58 @@
-version: '3.8'
-
 services:
   mongodb:
-    image: mongo:7
+    image: mongo:${MONGO_VERSION}
     container_name: jobsearcher-mongo
     ports:
-      - "27017:27017"
+      - "${MONGO_EXTERNAL_PORT}:${MONGO_PORT}"
     volumes:
       - mongo_data:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: midzospa
-      MONGO_INITDB_ROOT_PASSWORD: 3VcdcelzsTWGNkApcA6x8PsW
-      MONGO_INITDB_DATABASE: jobsearcher
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASS}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
       interval: 10s
       timeout: 5s
       retries: 5
 
-    backend:
-      build:
-        context: ./backend
-        dockerfile: Dockerfile
-      container_name: jobsearcher-backend
-      ports:
-        - "8500:8000"
-      depends_on:
-        mongodb:
-          condition: service_healthy
-      environment:
-        - MONGODB_URL=mongodb://midzospa:3VcdcelzsTWGNkApcA6x8PsW@mongodb:27017/jobsearcher
-      volumes:
-        - ./backend:/app
-        - ./backend/.venv:/app/.venv
-      command: python main.py
-      healthcheck:
-        test: ["CMD", "python", "-c", "import requests; r = requests.get('http://localhost:8000/health'); exit(0 if r.status_code == 200 else 1)"]
-        interval: 10s
-        timeout: 5s
-        retries: 5
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: ${BACKEND_CONTAINER_NAME}
+    working_dir: /workspaces/jobsearcher/backend
+    ports:
+      - "${BACKEND_EXTERNAL_PORT}:${BACKEND_INTERNAL_PORT}"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      - MONGODB_URL=${MONGODB_URL}
+    volumes:
+      - ./backend:/app
+      - ./backend/.venv:/app/.venv
+    command: python main.py
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; r = requests.get('http://localhost:${BACKEND_INTERNAL_PORT}/health'); exit(0 if r.status_code == 200 else 1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   frontend:
     build:
-      context: ./frontend
+      context: ../frontend
       dockerfile: Dockerfile
-    container_name: jobsearcher-frontend
+    container_name: ${FRONTEND_CONTAINER_NAME}
     ports:
-      - "8501:4200"
+      - "${FRONTEND_EXTERNAL_PORT}:${FRONTEND_INTERNAL_PORT}"
     depends_on:
       - backend
     volumes:
       - ./frontend:/app
       - /app/node_modules
     environment:
-      - API_URL=http://backend:8000
+      - API_URL=${API_URL}
     command: ng serve --host 0.0.0.0 --disable-host-check
 
 volumes:
