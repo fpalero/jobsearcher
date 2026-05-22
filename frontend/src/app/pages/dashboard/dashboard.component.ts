@@ -87,7 +87,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       next: (res) => {
         let jobs = res.data;
         if (mode === 'not-applied') {
-          jobs = jobs.filter(j => j.feedback !== 'negative');
+          jobs = jobs.filter(j => j.feedback !== 'negative' && !j.saved);
         } else if (mode === 'interested') {
           jobs = jobs.filter(j => j.feedback === 'positive');
         } else if (mode === 'not-interested') {
