@@ -90,7 +90,7 @@ def generate_cover_letter_pdf(job_id: str) -> Path:
             md_path.write_text(md_content, encoding="utf-8")
 
         try:
-            markdown_to_pdf(md_path, pdf_path)
+            markdown_to_pdf(md_path.read_text(encoding="utf-8"), pdf_path)
         except Exception as e:
             raise CoverLetterError(f"Failed to convert MD to PDF: {e}") from e
 
