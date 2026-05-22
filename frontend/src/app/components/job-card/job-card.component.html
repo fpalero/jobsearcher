@@ -39,8 +39,8 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center gap-sm">
-      <button class="p-1 text-on-surface-variant hover:text-primary transition-colors" (click)="toggleSave($event)" title="Save job">
+    <div class="flex flex-col items-center">
+      <button class="p-1 text-on-surface-variant hover:text-primary transition-colors -mb-3 relative z-10" (click)="toggleSave($event)" title="Save job">
         <span class="material-symbols-outlined" [class.filled]="job.saved" [style.font-variation-settings]="job.saved ? 'FILL 1' : 'FILL 0'" [class.text-primary]="job.saved">bookmark</span>
       </button>
       <div class="relative w-16 h-16">
