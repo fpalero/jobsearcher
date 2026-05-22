@@ -20,6 +20,8 @@ export class SidebarComponent implements OnInit {
       else if (mode === 'applied') this.activeItem = 'applied';
       else if (mode === 'not-applied') this.activeItem = 'not-applied';
       else if (mode === 'all') this.activeItem = 'all-jobs';
+      else if (mode === 'interested') this.activeItem = 'interested';
+      else if (mode === 'not-interested') this.activeItem = 'not-interested';
       else this.activeItem = 'not-applied';
     });
   }
@@ -34,5 +36,13 @@ export class SidebarComponent implements OnInit {
 
   showSaved() {
     this.filterState.setMode('saved');
+  }
+
+  showInterested() {
+    this.filterState.setFeedbackMode('interested');
+  }
+
+  showNotInterested() {
+    this.filterState.setFeedbackMode('not-interested');
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export type FilterMode = 'all' | 'not-applied' | 'applicable' | 'applied' | 'saved';
+export type FilterMode = 'all' | 'not-applied' | 'applicable' | 'applied' | 'saved' | 'interested' | 'not-interested';
 
 @Injectable({ providedIn: 'root' })
 export class FilterStateService {
@@ -37,6 +37,11 @@ export class FilterStateService {
 
   getMode(): FilterMode {
     return this.modeSubject.value;
+  }
+
+  setFeedbackMode(mode: 'interested' | 'not-interested') {
+    this.modeSubject.next(mode);
+    this.applicableSubject.next(undefined);
   }
 
   resetToDefault() {

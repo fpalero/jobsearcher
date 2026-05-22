@@ -6,6 +6,8 @@
           @if (isSavedView) {Saved Jobs}
           @else if (isAppliedView) {Applied Jobs}
           @else if (isNotAppliedView) {Available Jobs}
+          @else if (isInterestedView) {Interested Jobs}
+          @else if (isNotInterestedView) {Not Interested}
           @else if (filterActive) {Recommended for You}
           @else {Recommended for You}
         </h1>
@@ -13,6 +15,8 @@
           @if (isSavedView) {Your bookmarked positions.}
           @else if (isAppliedView) {Jobs you have applied to.}
           @else if (isNotAppliedView) {Jobs waiting for your application.}
+          @else if (isInterestedView) {Jobs you marked as a good match.}
+          @else if (isNotInterestedView) {Jobs you marked as not relevant.}
           @else if (filterActive) {Remote jobs in English, workable from Germany}
           @else {Based on your profile and skills.}
         </p>

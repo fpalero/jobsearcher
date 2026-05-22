@@ -70,6 +70,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return this.filterMode === 'not-applied';
   }
 
+  get isInterestedView(): boolean {
+    return this.filterMode === 'interested';
+  }
+
+  get isNotInterestedView(): boolean {
+    return this.filterMode === 'not-interested';
+  }
+
   private loadJobs(mode: FilterMode) {
     this.loading = true;
     const applicable = mode === 'applicable' || mode === 'applied' ? true : undefined;
@@ -77,7 +85,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const applied = mode === 'applied' ? true : mode === 'not-applied' ? false : undefined;
     this.jobService.getJobs(100, 0, applicable, saved, applied).subscribe({
       next: (res) => {
-        this.jobs = res.data;
+        let jobs = res.data;
+        if (mode === 'interested') {
+          jobs = jobs.filter(j => j.feedback === 'positive');
+        } else if (mode === 'not-interested') {
+          jobs = jobs.filter(j => j.feedback === 'negative');
+        }
+        this.jobs = jobs;
         this.loading = false;
       },
       error: () => this.loading = false,

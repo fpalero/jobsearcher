@@ -47,8 +47,8 @@
       </div>
       <div class="flex flex-col items-center gap-xs">
         <div class="relative w-16 h-16 flex items-center justify-center">
-          <button class="absolute -top-1 -left-1 z-10 w-8 h-8 flex items-center justify-center rounded-full border border-outline-variant/30 bg-white/80 backdrop-blur-sm text-on-surface-variant hover:border-primary hover:text-primary transition-all duration-200 active:scale-90 shadow-sm" (click)="toggleSave()" title="Save job">
-            <span class="material-symbols-outlined text-[18px]" [class.filled]="isSaved" [style.font-variation-settings]="isSaved ? 'FILL 1' : 'FILL 0'" [class.text-primary]="isSaved">bookmark</span>
+          <button class="p-xs hover:text-primary transition-colors" (click)="toggleSave()" title="Save job">
+            <span class="material-symbols-outlined" [class.filled]="isSaved" [style.font-variation-settings]="isSaved ? 'FILL 1' : 'FILL 0'" [class.text-primary]="isSaved">bookmark</span>
           </button>
           <svg class="w-full h-full match-ring" viewBox="0 0 64 64">
             <circle class="text-surface-container-highest" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"/>

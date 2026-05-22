@@ -4,31 +4,21 @@
      (mouseleave)="isHovered = false"
      (click)="viewDetails.emit(job)">
   <div class="flex justify-between items-start gap-lg">
-    <div class="flex gap-lg">
+    <div class="flex-1 flex gap-lg">
       <div class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center overflow-hidden flex-shrink-0">
         <img [src]="job.logoUrl" alt="Company Logo" class="w-10 h-10 object-contain" (error)="logoError = true" [class.hidden]="logoError">
         @if (logoError) {
           <span class="text-headline-md text-on-surface-variant font-bold">{{ job.company.charAt(0) }}</span>
         }
       </div>
-      <div class="space-y-xs">
+      <div class="space-y-xs flex-1">
         <div class="flex items-center gap-sm">
           <p class="text-label-md text-on-surface-variant">{{ job.company }}</p>
           @if (job.applied) {
             <span class="px-sm py-0.5 bg-secondary-container text-on-secondary-container text-label-md rounded-full font-semibold">Applied</span>
           }
         </div>
-        <h3 class="text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
-          {{ job.title }}
-          <button class="applied-toggle-btn ml-3 flex items-center gap-1 px-3 py-1 rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-variant transition-all duration-200"
-                  [class.bg-secondary-container]="job.applied"
-                  [class.text-on-secondary-container]="job.applied"
-                  [class.border-transparent]="job.applied"
-                  (click)="toggleApplied($event)">
-            <span class="material-symbols-outlined text-[18px] leading-none">{{ job.applied ? 'check_circle' : 'radio_button_unchecked' }}</span>
-            <span class="text-label-md font-bold">{{ job.applied ? 'Applied' : 'Apply?' }}</span>
-          </button>
-        </h3>
+        <h3 class="text-headline-md text-on-surface group-hover:text-primary transition-colors">{{ job.title }}</h3>
         <div class="flex items-center gap-md text-on-surface-variant text-body-md">
           <span class="flex items-center gap-xs">
             <span class="material-symbols-outlined text-[18px]">location_on</span>
@@ -63,9 +53,14 @@
       </button>
     </div>
     <div class="flex flex-col items-center gap-sm">
-      <button class="absolute top-lg right-lg p-sm text-on-surface-variant hover:text-primary transition-colors bg-surface-container-low rounded-full z-10" (click)="toggleSave($event)" title="Save job">
-        <span class="material-symbols-outlined" [class.filled]="job.saved" [style.font-variation-settings]="job.saved ? 'FILL 1' : 'FILL 0'" [class.text-secondary]="job.saved">bookmark</span>
-      </button>
+      <div class="flex items-center gap-xs">
+        <button class="p-xs hover:text-primary transition-colors" (click)="toggleSave($event)" title="Save job">
+          <span class="material-symbols-outlined" [class.filled]="job.saved" [style.font-variation-settings]="job.saved ? 'FILL 1' : 'FILL 0'" [class.text-primary]="job.saved">bookmark</span>
+        </button>
+        <button class="p-xs hover:text-secondary transition-colors" (click)="toggleApplied($event)" [title]="job.applied ? 'Unmark as applied' : 'Mark as applied'">
+          <span class="material-symbols-outlined text-[20px]" [class.filled]="job.applied" [style.font-variation-settings]="job.applied ? 'FILL 1' : 'FILL 0'" [class.text-secondary]="job.applied">check_circle</span>
+        </button>
+      </div>
       <div class="relative w-16 h-16">
         <svg class="match-ring w-16 h-16" viewBox="0 0 64 64">
           <circle class="text-surface-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"/>
