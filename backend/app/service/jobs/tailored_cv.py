@@ -11,6 +11,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
 from app.core.data_unified_repository import unified_jobs_collection
+from app.application.dtos.jobs_dto import JobDTO
 from app.service.llm_config import get_llm
 from app.service.jobs.md_to_ats_pdf import markdown_to_pdf
 
@@ -93,11 +94,12 @@ def _fetch_job(job_id: str) -> dict:
     return doc
 
 
-def _get_or_create_paths(company: str, job_id: str) -> tuple[Path, Path, str]:
+def _get_or_create_paths(company: str, job_id: str, job_title: str = "") -> tuple[Path, Path, str]:
     slug = f"{_slugify(company)}-{job_id}"
     base = APPLICATIONS_DIR / slug
     md_path = base / f"cv_{slug}.md"
-    pdf_path = base / "pdf" / f"cv_{slug}.pdf"
+    title_slug = _slugify(job_title) if job_title else "cv"
+    pdf_path = base / "pdf" / f"cv_fernando_palero_{title_slug}.pdf"
     base.mkdir(parents=True, exist_ok=True)
     pdf_path.parent.mkdir(parents=True, exist_ok=True)
     return md_path, pdf_path, slug
@@ -160,8 +162,10 @@ def generate_tailored_pdf(job_id: str) -> Path:
     lock = _get_lock(job_id)
     with lock:
         job = _fetch_job(job_id)
-        company = job.get("company") or "unknown"
-        md_path, pdf_path, slug = _get_or_create_paths(company, job_id)
+        dto = JobDTO.from_mongo(job)
+        company = dto.company or "unknown"
+        title = dto.title or ""
+        md_path, pdf_path, slug = _get_or_create_paths(company, job_id, title)
         logger.info("Paths: md=%s pdf=%s", md_path, pdf_path)
 
         if pdf_path.exists():
