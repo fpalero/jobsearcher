@@ -12,7 +12,12 @@
         }
       </div>
       <div class="space-y-xs">
-        <p class="text-label-md text-on-surface-variant">{{ job.company }}</p>
+        <div class="flex items-center gap-sm">
+          <p class="text-label-md text-on-surface-variant">{{ job.company }}</p>
+          @if (job.applied) {
+            <span class="px-sm py-0.5 bg-secondary-container text-on-secondary-container text-label-md rounded-full font-semibold">Applied</span>
+          }
+        </div>
         <h3 class="text-headline-md text-on-surface group-hover:text-primary transition-colors">{{ job.title }}</h3>
         <div class="flex items-center gap-md text-on-surface-variant text-body-md">
           <span class="flex items-center gap-xs">
@@ -47,7 +52,15 @@
         Apply Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
       </button>
     </div>
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center gap-sm">
+      <div class="flex items-center gap-xs">
+        <button class="p-xs text-on-surface-variant hover:text-secondary transition-colors" (click)="toggleSave($event)" title="Save job">
+          <span class="material-symbols-outlined" [class.filled]="job.saved" [style.font-variation-settings]="job.saved ? 'FILL 1' : 'FILL 0'" [class.text-secondary]="job.saved">bookmark</span>
+        </button>
+        <button class="p-xs text-on-surface-variant hover:text-secondary transition-colors" (click)="openApplyLink($event)" title="Apply">
+          <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+        </button>
+      </div>
       <div class="relative w-16 h-16">
         <svg class="match-ring w-16 h-16" viewBox="0 0 64 64">
           <circle class="text-surface-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"/>
@@ -59,6 +72,17 @@
         </div>
       </div>
       <span class="text-label-md text-secondary mt-xs uppercase tracking-wider">Match</span>
+      <div class="flex items-center gap-xs mt-sm">
+        <button class="p-xs text-on-surface-variant hover:text-secondary transition-colors" (click)="ratePositive($event)" title="Good match">
+          <span class="material-symbols-outlined text-[20px]" [class.filled]="job.feedback === 'positive'" [style.font-variation-settings]="job.feedback === 'positive' ? 'FILL 1' : 'FILL 0'" [class.text-secondary]="job.feedback === 'positive'">thumb_up</span>
+        </button>
+        <button class="p-xs text-on-surface-variant hover:text-error transition-colors" (click)="rateNegative($event)" title="Not a match">
+          <span class="material-symbols-outlined text-[20px]" [class.filled]="job.feedback === 'negative'" [style.font-variation-settings]="job.feedback === 'negative' ? 'FILL 1' : 'FILL 0'" [class.text-error]="job.feedback === 'negative'">thumb_down</span>
+        </button>
+        <button class="p-xs text-on-surface-variant hover:text-secondary transition-colors" (click)="toggleApplied($event)" [title]="job.applied ? 'Unmark as applied' : 'Mark as applied'">
+          <span class="material-symbols-outlined text-[20px]" [class.filled]="job.applied" [style.font-variation-settings]="job.applied ? 'FILL 1' : 'FILL 0'" [class.text-secondary]="job.applied">check_circle</span>
+        </button>
+      </div>
     </div>
   </div>
   <div class="mt-md">

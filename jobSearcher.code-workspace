@@ -10,6 +10,9 @@
 			"path": "devops",
 		},
 		{
+			"path": "docs",
+		},
+		{
 			"name": "ROOT / CONFIG",
 			"path": "."
 		},
@@ -18,6 +21,7 @@
 		"files.exclude": {
 			"frontend/": true,
 			"backend/": true,
+			"docs/": true,
 			"devops/": true,
 			"**/.git": true,
 			"**/node_modules": true,

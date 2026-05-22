@@ -12,6 +12,11 @@ export interface Job {
   postedDate: string;
   applicable?: boolean;
   applyLink?: string;
+  saved?: boolean;
+  applied?: boolean;
+  responsibilities?: string[];
+  requirements?: string[];
+  feedback?: 'positive' | 'negative' | null;
 }
 
 export const MOCK_JOBS: Job[] = [

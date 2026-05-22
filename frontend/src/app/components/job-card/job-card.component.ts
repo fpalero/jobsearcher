@@ -76,4 +76,38 @@ export class JobCardComponent {
       },
     });
   }
+
+  toggleSave(event: Event) {
+    event.stopPropagation();
+    this.job.saved = !this.job.saved;
+    this.jobService.saveJob(this.job.jobId, this.job.saved).subscribe({
+      error: (err) => {
+        this.job.saved = !this.job.saved;
+      },
+    });
+  }
+
+  toggleApplied(event: Event) {
+    event.stopPropagation();
+    this.job.applied = !this.job.applied;
+    this.jobService.applyJob(this.job.jobId, this.job.applied).subscribe({
+      error: (err) => {
+        this.job.applied = !this.job.applied;
+      },
+    });
+  }
+
+  ratePositive(event: Event) {
+    event.stopPropagation();
+    this.job.feedback = this.job.feedback === 'positive' ? null : 'positive';
+    const rating = this.job.feedback === 'positive' ? 1 : 0;
+    this.jobService.submitFeedback(this.job.jobId, rating).subscribe();
+  }
+
+  rateNegative(event: Event) {
+    event.stopPropagation();
+    this.job.feedback = this.job.feedback === 'negative' ? null : 'negative';
+    const rating = this.job.feedback === 'negative' ? -1 : 0;
+    this.jobService.submitFeedback(this.job.jobId, rating).subscribe();
+  }
 }

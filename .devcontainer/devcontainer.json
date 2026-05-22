@@ -1,13 +1,13 @@
 {
   "name": "JobSearcher Studio",
   "dockerComposeFile": "../devops/docker-compose.yml",
-  "service": "frontend",
-  "workspaceFolder": "/workspaces/jobsearcher",
-  "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && cd /workspaces/jobsearcher/backend && $HOME/.local/bin/uv sync",
+  "service": "backend",
+  "workspaceFolder": "/app",
+  "postCreateCommand": "pip install uv && uv sync",
   "customizations": {
     "vscode": {
       "settings": {
-        "python.defaultInterpreterPath": "/workspaces/jobsearcher/backend/.venv/bin/python",
+        "python.defaultInterpreterPath": "/app/.venv/bin/python",
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "[python]": {

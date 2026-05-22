@@ -8,10 +8,17 @@
       <span class="material-symbols-outlined">work</span>
       <span class="text-label-md">All Jobs</span>
     </a>
-    <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'applicable'" [class.text-on-primary-container]="activeItem === 'applicable'" [class.text-on-surface-variant]="activeItem !== 'applicable'" [class.hover:bg-surface-variant]="activeItem !== 'applicable'" (click)="showApplicable()">
-      <span class="material-symbols-outlined">check_circle</span>
-      <span class="text-label-md">Applicable Jobs</span>
+    <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'applied'" [class.text-on-primary-container]="activeItem === 'applied'" [class.text-on-surface-variant]="activeItem !== 'applied'" [class.hover:bg-surface-variant]="activeItem !== 'applied'" (click)="showApplied()">
+      <span class="material-symbols-outlined">assignment_turned_in</span>
+      <span class="text-label-md">Applied</span>
     </a>
-
+    <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'saved'" [class.text-on-primary-container]="activeItem === 'saved'" [class.text-on-surface-variant]="activeItem !== 'saved'" [class.hover:bg-surface-variant]="activeItem !== 'saved'" (click)="showSaved()">
+      <span class="material-symbols-outlined">bookmark</span>
+      <span class="text-label-md">Saved</span>
+    </a>
+    <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'sources'" [class.text-on-primary-container]="activeItem === 'sources'" [class.text-on-surface-variant]="activeItem !== 'sources'" [class.hover:bg-surface-variant]="activeItem !== 'sources'" routerLink="/sources">
+      <span class="material-symbols-outlined">source</span>
+      <span class="text-label-md">Sources</span>
+    </a>
   </nav>
 </aside>

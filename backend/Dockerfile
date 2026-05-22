@@ -7,15 +7,15 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements files
 COPY pyproject.toml uv.lock ./
 
 # Install Python dependencies
-# We'll use pip to install from pyproject.toml (which uses dependencies)
-# For simplicity, we'll install the dependencies directly
 RUN pip install --no-cache-dir \
+    uv \
     requests \
     pymongo \
     python-dotenv \
@@ -41,4 +41,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the application
-CMD ["python", "main.py"]
+CMD ["python", "-m", "app.main"]

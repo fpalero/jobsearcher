@@ -21,7 +21,7 @@ services:
       context: ../backend
       dockerfile: Dockerfile
     container_name: ${BACKEND_CONTAINER_NAME}
-    working_dir: /workspaces/jobsearcher/backend
+    working_dir: /app
     ports:
       - "${BACKEND_EXTERNAL_PORT}:${BACKEND_INTERNAL_PORT}"
     depends_on:
@@ -30,9 +30,9 @@ services:
     environment:
       - MONGODB_URL=${MONGODB_URL}
     volumes:
-      - ./backend:/app
-      - ./backend/.venv:/app/.venv
-    command: python main.py
+      - ../backend:/app
+      - ../backend/.venv:/app/.venv
+    command: python -m app.main
     healthcheck:
       test: ["CMD", "python", "-c", "import requests; r = requests.get('http://localhost:${BACKEND_INTERNAL_PORT}/health'); exit(0 if r.status_code == 200 else 1)"]
       interval: 10s
@@ -49,11 +49,11 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./frontend:/app
+      - ../frontend:/app
       - /app/node_modules
     environment:
       - API_URL=${API_URL}
-    command: ng serve --host 0.0.0.0 --disable-host-check
+    command: npx ng serve --host 0.0.0.0 --disable-host-check
 
 volumes:
   mongo_data:

@@ -26,7 +26,7 @@ Senior Software Engineer and Technical Team Lead with over 12 years of enterpris
 ## PROFESSIONAL EXPERIENCE
 
 ### Senior Software Engineer — Material One (Augsburg, Germany - Remote)
-*July 2025 – December 2025 (Company Layoff due to lost client contract)*
+*July 2025 – December 2025*
 * Accelerated multi-source data integration by leading the greenfield development of a high-throughput data aggregation platform.
 * Achieved 99.9% system availability by engineering scalable backend microservices using Java, Spring Boot, and Spring Cloud under Domain-Driven Design (DDD).
 * Built resilient cloud infrastructure on Microsoft Azure by integrating Event Hub, Cosmos DB, and serverless Azure Functions.

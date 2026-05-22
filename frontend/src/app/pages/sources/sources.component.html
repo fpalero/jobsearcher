@@ -1,0 +1,108 @@
+<main class="flex-1 md:ml-[280px]">
+  <header class="mb-lg flex justify-between items-end">
+    <div>
+      <h1 class="text-headline-lg text-on-surface">Data Sources</h1>
+      <p class="text-body-lg text-on-surface-variant">Manage your automated job aggregation channels and sync frequencies.</p>
+    </div>
+    <div class="flex items-center gap-md">
+      <span class="text-label-md text-on-surface-variant bg-surface-container px-md py-sm rounded-xl">
+        {{ sources.length }} Active Pipeline{{ sources.length !== 1 ? 's' : '' }}
+      </span>
+      <button class="px-lg py-md bg-primary text-on-primary font-bold text-label-md rounded-xl hover:bg-primary-container transition-all flex items-center gap-sm">
+        <span class="material-symbols-outlined text-[18px]">play_circle</span>
+        New Extraction
+      </button>
+    </div>
+  </header>
+
+  @if (loading) {
+    <div class="flex items-center justify-center py-xl">
+      <span class="text-headline-md text-on-surface-variant">Loading sources...</span>
+    </div>
+  } @else {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md mb-xl">
+      @for (source of sources; track source.name) {
+        <div class="bg-white rounded-xl p-lg border border-outline-variant/20 hover:shadow-[0px_4px_20px_rgba(15,23,42,0.05)] hover:border-primary transition-all">
+          <div class="flex items-start justify-between mb-md">
+            <div class="flex items-center gap-md">
+              <div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary text-[24px]">{{ source.name === 'linkedin' ? 'business_center' : source.name === 'jsearch' ? 'travel_explore' : 'public' }}</span>
+              </div>
+              <div>
+                <h3 class="text-headline-md text-on-surface">{{ source.label }}</h3>
+                <p class="text-body-md text-on-surface-variant">{{ source.description }}</p>
+              </div>
+            </div>
+            <button class="p-xs text-on-surface-variant hover:text-on-surface transition-colors">
+              <span class="material-symbols-outlined">more_vert</span>
+            </button>
+          </div>
+
+          <div class="space-y-sm mb-lg">
+            @if (source.status === 'syncing') {
+              <div class="flex items-center gap-sm">
+                <span class="flex items-center gap-xs text-label-md text-primary">
+                  <span class="inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></span>
+                  Extracting data... {{ source.progress ?? 0 }}%
+                </span>
+              </div>
+              <div class="w-full bg-surface-container rounded-full h-2">
+                <div class="bg-primary h-2 rounded-full transition-all" [style.width.%]="source.progress ?? 0"></div>
+              </div>
+            } @else {
+              <div class="flex items-center gap-xs text-label-md text-on-surface-variant">
+                <span class="material-symbols-outlined text-[16px]">schedule</span>
+                Last sync: {{ formatLastSync(source.last_sync) }}
+              </div>
+            }
+            <div class="text-body-md text-on-surface">
+              <span class="text-data-mono text-headline-md font-bold">{{ source.total_records.toLocaleString() }}</span>
+              <span class="text-on-surface-variant ml-xs">Total Records</span>
+            </div>
+          </div>
+
+          <div class="flex gap-sm">
+            @if (source.status === 'syncing') {
+              <button class="flex-1 px-md py-sm border border-error text-error font-bold text-label-md rounded-xl hover:bg-error-container transition-colors flex items-center justify-center gap-xs" (click)="stopSync(source.name)">
+                <span class="material-symbols-outlined text-[16px]">stop</span>
+                Stop Extraction
+              </button>
+            } @else {
+              <button class="flex-1 px-md py-sm bg-primary text-on-primary font-bold text-label-md rounded-xl hover:bg-primary-container transition-colors flex items-center justify-center gap-xs" (click)="triggerSync(source.name)">
+                <span class="material-symbols-outlined text-[16px]">sync</span>
+                Start Sync
+              </button>
+            }
+          </div>
+        </div>
+      }
+
+      <div class="bg-surface-container-low border-2 border-dashed border-outline-variant rounded-xl p-lg flex flex-col items-center justify-center gap-md min-h-[220px] cursor-pointer hover:border-primary hover:bg-surface-container transition-all">
+        <span class="material-symbols-outlined text-on-surface-variant text-[32px]">add</span>
+        <span class="text-label-md text-on-surface-variant">Add New Data Source</span>
+      </div>
+    </div>
+  }
+
+  @if (showConfirmModal) {
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-md bg-on-surface/40" style="backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);" (click)="cancelSyncModal()">
+      <div class="bg-surface-container-lowest w-full max-w-[480px] rounded-xl shadow-[0px_8px_40px_rgba(15,23,42,0.15)] p-xl" (click)="$event.stopPropagation()">
+        <div class="flex items-center gap-md mb-lg">
+          <span class="material-symbols-outlined text-primary text-[32px]">play_circle</span>
+          <h2 class="text-headline-md text-on-surface">Confirm Extraction</h2>
+        </div>
+        <p class="text-body-md text-on-surface-variant mb-xl">
+          You are about to initiate a full data extraction from {{ syncPending }}. This process typically takes 5-10 minutes depending on record volume.
+        </p>
+        <div class="flex justify-end gap-md">
+          <button class="px-lg py-md border border-outline text-on-surface-variant text-label-md rounded-xl hover:bg-surface-container-highest transition-colors" (click)="cancelSyncModal()">
+            Cancel
+          </button>
+          <button class="px-lg py-md bg-primary text-on-primary font-bold text-label-md rounded-xl hover:bg-primary-container transition-colors" (click)="confirmSync()">
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</main>

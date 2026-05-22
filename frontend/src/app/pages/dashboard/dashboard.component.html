@@ -2,8 +2,18 @@
   <header class="mb-lg">
     <div class="flex justify-between items-end">
       <div>
-        <h1 class="text-headline-lg text-on-surface">@if (filterActive) {Applicable Jobs} @else {Recommended for You}</h1>
-        <p class="text-body-lg text-on-surface-variant">@if (filterActive) {Remote jobs in English, workable from Germany} @else {Based on your profile and skills.}</p>
+        <h1 class="text-headline-lg text-on-surface">
+          @if (isSavedView) {Saved Jobs}
+          @else if (isAppliedView) {Applied Jobs}
+          @else if (filterActive) {Recommended for You}
+          @else {Recommended for You}
+        </h1>
+        <p class="text-body-lg text-on-surface-variant">
+          @if (isSavedView) {Your bookmarked positions.}
+          @else if (isAppliedView) {Jobs you have applied to.}
+          @else if (filterActive) {Remote jobs in English, workable from Germany}
+          @else {Based on your profile and skills.}
+        </p>
       </div>
       <div class="flex gap-sm">
         <button class="flex items-center gap-xs px-md py-sm bg-white border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors">
@@ -32,6 +42,50 @@
         </div>
       }
     </div>
+
+    @if (filterActive && jobs.length > 0 && !showFeedbackForm) {
+      <div class="bg-white rounded-xl p-lg border border-outline-variant/20 mb-xl">
+        <div class="flex items-start gap-md">
+          <span class="material-symbols-outlined text-on-surface-variant text-[24px] mt-1">lightbulb</span>
+          <div class="flex-1">
+            <h3 class="text-headline-md text-on-surface mb-sm">How can we improve?</h3>
+            <p class="text-body-md text-on-surface-variant mb-md">Tell us why these jobs weren't a good match so we can show you better recommendations.</p>
+          </div>
+          <button class="text-label-md text-primary font-bold hover:underline" (click)="showFeedbackForm = true">
+            Give Feedback
+          </button>
+        </div>
+      </div>
+    }
+
+    @if (showFeedbackForm) {
+      <div class="bg-white rounded-xl p-lg border border-outline-variant/20 mb-xl">
+        <h3 class="text-headline-md text-on-surface mb-md">What went wrong?</h3>
+        <div class="space-y-sm mb-lg">
+          @for (reason of allFeedbackReasons; track reason) {
+            <label class="flex items-center gap-md p-md border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container transition-colors"
+                   [class.border-primary]="feedbackReasons.includes(reason)"
+                   [class.bg-primary-container]="feedbackReasons.includes(reason)">
+              <input type="checkbox" class="hidden" (change)="toggleFeedbackReason(reason)" [checked]="feedbackReasons.includes(reason)">
+              <span class="material-symbols-outlined text-[20px]"
+                    [class.text-primary]="feedbackReasons.includes(reason)"
+                    [class.text-on-surface-variant]="!feedbackReasons.includes(reason)">
+                {{ feedbackReasons.includes(reason) ? 'check_box' : 'check_box_outline_blank' }}
+              </span>
+              <span class="text-body-md text-on-surface">{{ reason }}</span>
+            </label>
+          }
+        </div>
+        <div class="flex justify-end gap-md">
+          <button class="px-lg py-md border border-outline text-on-surface-variant text-label-md rounded-xl hover:bg-surface-container-highest transition-colors" (click)="cancelFeedback()">
+            Cancel
+          </button>
+          <button class="px-lg py-md bg-primary text-on-primary font-bold text-label-md rounded-xl hover:bg-primary-container transition-colors" (click)="submitFeedback()">
+            Submit Feedback
+          </button>
+        </div>
+      </div>
+    }
   }
 </main>
 

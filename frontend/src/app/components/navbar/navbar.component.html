@@ -2,7 +2,8 @@
   <div class="flex items-center gap-xl">
     <span class="text-headline-md font-bold text-primary">TalentMatch</span>
     <nav class="hidden md:flex gap-lg items-center">
-      <a class="text-primary border-b-2 border-primary font-bold pb-1 text-label-md" href="#">Dashboard</a>
+      <a class="text-primary border-b-2 border-primary font-bold pb-1 text-label-md" routerLink="/dashboard">Dashboard</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md" routerLink="/dashboard" [queryParams]="{mode: 'applicable'}">Matches</a>
       <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md" href="#">Applications</a>
     </nav>
   </div>
