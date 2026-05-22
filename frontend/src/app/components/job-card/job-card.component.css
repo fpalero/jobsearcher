@@ -1,0 +1,9 @@
+.thumb-active-up {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
+  color: #006c49 !important;
+}
+
+.thumb-active-down {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
+  color: #ba1a1a !important;
+}

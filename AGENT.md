@@ -45,9 +45,15 @@ Eres mi asistente personal, segundo cerebro y **Team-Lead**. Tu objetivo es ayud
 - #tema/[categoria] → clasificación temática libre
 
 ## Reglas de comportamiento
-- Si una nota pertenece a un proyecto, enlázala en la sección “🔗 Relacionado” del proyecto
+- Si una nota pertenece a un proyecto, enlázala en la sección "🔗 Relacionado" del proyecto
 - Si aparece una persona relevante en una nota, crea o enlaza su nota en personas/
 - Si una idea madura, conviértela en proyecto usando templates/proyecto.md
 - Si algo entra sin contexto, déjalo en inbox/
 - Prioriza claridad, conexión entre notas y utilidad futura por sobre exceso de detalle
 - Carga las skills que estan dentro de las carpetas .claude/skills y .agents/skills
+
+## Diseño Frontend (Stitch)
+- SIEMPRE verifica los cambios de diseño del frontend en Stitch antes de implementar cambios visuales
+- El proyecto en Stitch se llama **"Smart Career Matcher"**
+- Usa las herramientas de Stitch para listar pantallas, generar nuevas screens o editar existentes
+- Mantén consistencia entre el diseño en Stitch y la implementación en el frontend

@@ -74,12 +74,12 @@ async def tailored_pdf(job_id: str = Body(..., embed=True)):
     except Exception as e:
         logger.exception("Unexpected error generating tailored PDF")
         raise HTTPException(status_code=500, detail=str(e))
-    slug = pdf_path.parent.parent.name
-    logger.info("PDF generated, returning file cv_%s.pdf", slug)
+    filename = pdf_path.stem
+    logger.info("PDF generated, returning file %s.pdf", filename)
     return FileResponse(
         pdf_path,
         media_type="application/pdf",
-        filename=f"cv_{slug}.pdf",
+        filename=f"{filename}.pdf",
     )
 
 
@@ -91,9 +91,9 @@ async def cover_letter(job_id: str = Body(..., embed=True)):
     except Exception as e:
         logger.exception("Error generating cover letter")
         raise HTTPException(status_code=500, detail=str(e))
-    slug = pdf_path.parent.parent.name
+    filename = pdf_path.stem
     return FileResponse(
         pdf_path,
         media_type="application/pdf",
-        filename=f"cover_letter_{slug}.pdf",
+        filename=f"{filename}.pdf",
     )
