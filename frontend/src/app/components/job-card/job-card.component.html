@@ -16,10 +16,10 @@
         <div class="flex items-center gap-md">
           <h3 class="text-headline-md text-on-surface group-hover:text-primary transition-colors">{{ job.title }}</h3>
           @if (job.applied) {
-            <div class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-bold uppercase tracking-wider h-fit">
+            <button class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-bold uppercase tracking-wider h-fit hover:opacity-80 transition-all duration-200" (click)="toggleApplied($event)">
               <span class="material-symbols-outlined text-[14px]">check_circle</span>
               Applied
-            </div>
+            </button>
           } @else {
             <button class="flex items-center gap-1 px-2 py-0.5 bg-surface-container text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider opacity-50 h-fit hover:opacity-100 hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" (click)="toggleApplied($event)">
               <span class="material-symbols-outlined text-[14px]">radio_button_unchecked</span>
