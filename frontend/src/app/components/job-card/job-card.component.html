@@ -12,7 +12,12 @@
         }
       </div>
       <div class="space-y-xs">
-        <p class="text-label-md text-on-surface-variant">{{ job.company }}</p>
+        <div class="flex items-center gap-sm">
+          <p class="text-label-md text-on-surface-variant">{{ job.company }}</p>
+          @if (job.applied) {
+            <span class="px-sm py-0.5 bg-secondary-container text-on-secondary-container text-label-md rounded-full font-semibold">Applied</span>
+          }
+        </div>
         <h3 class="text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
           {{ job.title }}
           <button class="applied-toggle-btn ml-3 flex items-center gap-1 px-3 py-1 rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-variant transition-all duration-200"
@@ -83,7 +88,7 @@
     </div>
   </div>
   <div class="mt-md">
-    <p class="text-body-md text-on-surface-variant line-clamp-2 max-w-3xl">{{ job.description }}</p>
+    <p class="text-body-md text-on-surface-variant line-clamp-2">{{ job.description }}</p>
   </div>
   <div class="mt-md flex flex-wrap gap-sm">
     @for (tag of job.tags; track tag) {
