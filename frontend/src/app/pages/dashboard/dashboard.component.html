@@ -40,7 +40,7 @@
   } @else {
     <div class="space-y-md mb-xl">
       @for (job of jobs; track job.id) {
-        <app-job-card [job]="job" (viewDetails)="showDetails($event)"/>
+        <app-job-card [job]="job" (viewDetails)="showDetails($event)" (refineAI)="openAIRefinement($event)"/>
       }
       @if (jobs.length === 0) {
         <div class="text-center py-xl text-on-surface-variant">

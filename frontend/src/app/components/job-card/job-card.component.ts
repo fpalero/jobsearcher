@@ -17,7 +17,14 @@ export class JobCardComponent {
   generatingCV = false;
   generatingCoverLetter = false;
 
+  @Output() refineAI = new EventEmitter<Job>();
+
   constructor(private jobService: JobService) {}
+
+  refineWithAI(event: Event) {
+    event.stopPropagation();
+    this.refineAI.emit(this.job);
+  }
 
   get matchOffset(): number {
     const circumference = 175.9;

@@ -4,21 +4,29 @@
      (mouseleave)="isHovered = false"
      (click)="viewDetails.emit(job)">
   <div class="flex justify-between items-start gap-lg">
-    <div class="flex-1 flex gap-lg">
+    <div class="flex gap-lg flex-1">
       <div class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center overflow-hidden flex-shrink-0">
         <img [src]="job.logoUrl" alt="Company Logo" class="w-10 h-10 object-contain" (error)="logoError = true" [class.hidden]="logoError">
         @if (logoError) {
           <span class="text-headline-md text-on-surface-variant font-bold">{{ job.company.charAt(0) }}</span>
         }
       </div>
-      <div class="space-y-xs flex-1">
-        <div class="flex items-center gap-sm">
-          <p class="text-label-md text-on-surface-variant">{{ job.company }}</p>
+      <div class="space-y-xs">
+        <p class="text-label-md text-on-surface-variant">{{ job.company }}</p>
+        <div class="flex items-center gap-md">
+          <h3 class="text-headline-md text-on-surface group-hover:text-primary transition-colors">{{ job.title }}</h3>
           @if (job.applied) {
-            <span class="px-sm py-0.5 bg-secondary-container text-on-secondary-container text-label-md rounded-full font-semibold">Applied</span>
+            <div class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-bold uppercase tracking-wider h-fit">
+              <span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Applied
+            </div>
+          } @else {
+            <div class="flex items-center gap-1 px-2 py-0.5 bg-surface-container text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider opacity-50 h-fit">
+              <span class="material-symbols-outlined text-[14px]">radio_button_unchecked</span>
+              Not Applied
+            </div>
           }
         </div>
-        <h3 class="text-headline-md text-on-surface group-hover:text-primary transition-colors">{{ job.title }}</h3>
         <div class="flex items-center gap-md text-on-surface-variant text-body-md">
           <span class="flex items-center gap-xs">
             <span class="material-symbols-outlined text-[18px]">location_on</span>
@@ -31,36 +39,10 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col gap-sm mr-md self-center">
-      <button class="flex items-center justify-center gap-xs px-md py-sm bg-primary-container text-on-primary-container rounded-xl font-bold transition-colors text-label-md whitespace-nowrap" (click)="generateCV($event)" [class.opacity-50]="generatingCV" [class.cursor-not-allowed]="generatingCV" [disabled]="generatingCV">
-        @if (generatingCV) {
-          <span class="inline-block w-4 h-4 border-2 border-on-primary-container border-t-transparent rounded-full animate-spin"></span>
-        } @else {
-          <span class="material-symbols-outlined text-[18px]">history_edu</span>
-        }
-        {{ generatingCV ? 'Generating...' : 'Generate CV' }}
-      </button>
-      <button class="flex items-center justify-center gap-xs px-md py-sm border border-primary text-primary hover:bg-surface-variant rounded-xl font-bold transition-colors text-label-md whitespace-nowrap" (click)="generateCoverLetter($event)" [class.opacity-50]="generatingCoverLetter" [class.cursor-not-allowed]="generatingCoverLetter" [disabled]="generatingCoverLetter">
-        @if (generatingCoverLetter) {
-          <span class="inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></span>
-        } @else {
-          <span class="material-symbols-outlined text-[18px]">description</span>
-        }
-        {{ generatingCoverLetter ? '...' : 'Cover Letter' }}
-      </button>
-      <button class="flex items-center justify-center gap-xs px-md py-sm bg-primary text-on-primary rounded-xl font-bold transition-colors text-label-md transition-all duration-300" (click)="openApplyLink($event)">
-        Apply Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-      </button>
-    </div>
     <div class="flex flex-col items-center gap-sm">
-      <div class="flex items-center gap-xs">
-        <button class="p-xs hover:text-primary transition-colors" (click)="toggleSave($event)" title="Save job">
-          <span class="material-symbols-outlined" [class.filled]="job.saved" [style.font-variation-settings]="job.saved ? 'FILL 1' : 'FILL 0'" [class.text-primary]="job.saved">bookmark</span>
-        </button>
-        <button class="p-xs hover:text-secondary transition-colors" (click)="toggleApplied($event)" [title]="job.applied ? 'Unmark as applied' : 'Mark as applied'">
-          <span class="material-symbols-outlined text-[20px]" [class.filled]="job.applied" [style.font-variation-settings]="job.applied ? 'FILL 1' : 'FILL 0'" [class.text-secondary]="job.applied">check_circle</span>
-        </button>
-      </div>
+      <button class="p-1 text-on-surface-variant hover:text-primary transition-colors" (click)="toggleSave($event)" title="Save job">
+        <span class="material-symbols-outlined" [class.filled]="job.saved" [style.font-variation-settings]="job.saved ? 'FILL 1' : 'FILL 0'" [class.text-primary]="job.saved">bookmark</span>
+      </button>
       <div class="relative w-16 h-16">
         <svg class="match-ring w-16 h-16" viewBox="0 0 64 64">
           <circle class="text-surface-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"/>
@@ -84,6 +66,31 @@
   </div>
   <div class="mt-md">
     <p class="text-body-md text-on-surface-variant line-clamp-2">{{ job.description }}</p>
+  </div>
+  <div class="mt-md flex flex-wrap gap-md">
+    <button class="flex items-center justify-center gap-xs px-md py-sm bg-primary-container text-on-primary-container rounded-xl font-bold transition-colors text-label-md" (click)="generateCV($event)" [class.opacity-50]="generatingCV" [class.cursor-not-allowed]="generatingCV" [disabled]="generatingCV">
+      @if (generatingCV) {
+        <span class="inline-block w-4 h-4 border-2 border-on-primary-container border-t-transparent rounded-full animate-spin"></span>
+      } @else {
+        <span class="material-symbols-outlined text-[18px]">history_edu</span>
+      }
+      {{ generatingCV ? 'Generating...' : 'Generate CV' }}
+    </button>
+    <button class="flex items-center justify-center gap-xs p-sm border border-outline-variant text-primary hover:bg-surface-variant rounded-xl transition-colors" title="AI Refinement" (click)="refineWithAI($event)">
+      <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+      <span class="font-bold text-label-md">Refine</span>
+    </button>
+    <button class="flex items-center justify-center gap-xs px-md py-sm border border-primary text-primary hover:bg-surface-variant rounded-xl font-bold transition-colors text-label-md" (click)="generateCoverLetter($event)" [class.opacity-50]="generatingCoverLetter" [class.cursor-not-allowed]="generatingCoverLetter" [disabled]="generatingCoverLetter">
+      @if (generatingCoverLetter) {
+        <span class="inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></span>
+      } @else {
+        <span class="material-symbols-outlined text-[18px]">description</span>
+      }
+      {{ generatingCoverLetter ? '...' : 'Cover Letter' }}
+    </button>
+    <button class="flex items-center justify-center gap-xs px-md py-sm bg-primary text-on-primary rounded-xl font-bold transition-colors text-label-md" (click)="openApplyLink($event)">
+      Apply Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+    </button>
   </div>
   <div class="mt-md flex flex-wrap gap-sm">
     @for (tag of job.tags; track tag) {

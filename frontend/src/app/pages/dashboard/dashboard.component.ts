@@ -108,6 +108,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.selectedJob = null;
   }
 
+  openAIRefinement(job: Job) {
+    console.log('AI Refinement requested for:', job.title);
+  }
+
   toggleFeedbackReason(reason: string) {
     const idx = this.feedbackReasons.indexOf(reason);
     if (idx >= 0) {
