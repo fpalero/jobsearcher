@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export type FilterMode = 'all' | 'applicable' | 'applied' | 'saved';
+export type FilterMode = 'all' | 'not-applied' | 'applicable' | 'applied' | 'saved';
 
 @Injectable({ providedIn: 'root' })
 export class FilterStateService {
   private applicableSubject = new BehaviorSubject<boolean | undefined>(undefined);
   applicable$: Observable<boolean | undefined> = this.applicableSubject.asObservable();
 
-  private modeSubject = new BehaviorSubject<FilterMode>('all');
+  private modeSubject = new BehaviorSubject<FilterMode>('not-applied');
   filterMode$: Observable<FilterMode> = this.modeSubject.asObservable();
 
   setApplicable(value: boolean | undefined) {
@@ -37,5 +37,9 @@ export class FilterStateService {
 
   getMode(): FilterMode {
     return this.modeSubject.value;
+  }
+
+  resetToDefault() {
+    this.setMode('not-applied');
   }
 }

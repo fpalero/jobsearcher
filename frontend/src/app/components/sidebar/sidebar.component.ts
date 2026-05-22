@@ -10,23 +10,22 @@ import { FilterStateService } from '../../services/filter-state.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit {
-  activeItem = 'all-jobs';
+  activeItem = 'not-applied';
 
   constructor(private filterState: FilterStateService) {}
 
   ngOnInit() {
-    this.filterState.applicable$.subscribe(val => {
-      this.activeItem = val === true ? 'applied' : 'all-jobs';
-    });
     this.filterState.filterMode$.subscribe(mode => {
       if (mode === 'saved') this.activeItem = 'saved';
       else if (mode === 'applied') this.activeItem = 'applied';
+      else if (mode === 'not-applied') this.activeItem = 'not-applied';
       else if (mode === 'all') this.activeItem = 'all-jobs';
+      else this.activeItem = 'not-applied';
     });
   }
 
   showAllJobs() {
-    this.filterState.setMode('all');
+    this.filterState.setMode('not-applied');
   }
 
   showApplied() {

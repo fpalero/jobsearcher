@@ -105,6 +105,16 @@ def get_saved_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
     return list(cursor)
 
 
+def get_not_applied_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
+    cursor = (
+        unified_jobs_collection.find({"$or": [{"applied": False}, {"applied": {"$exists": False}}]})
+        .sort("match", -1)
+        .skip(skip)
+        .limit(limit)
+    )
+    return list(cursor)
+
+
 def get_applied_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
     cursor = (
         unified_jobs_collection.find({"applied": True})

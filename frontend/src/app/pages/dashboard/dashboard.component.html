@@ -5,12 +5,14 @@
         <h1 class="text-headline-lg text-on-surface">
           @if (isSavedView) {Saved Jobs}
           @else if (isAppliedView) {Applied Jobs}
+          @else if (isNotAppliedView) {Available Jobs}
           @else if (filterActive) {Recommended for You}
           @else {Recommended for You}
         </h1>
         <p class="text-body-lg text-on-surface-variant">
           @if (isSavedView) {Your bookmarked positions.}
           @else if (isAppliedView) {Jobs you have applied to.}
+          @else if (isNotAppliedView) {Jobs waiting for your application.}
           @else if (filterActive) {Remote jobs in English, workable from Germany}
           @else {Based on your profile and skills.}
         </p>

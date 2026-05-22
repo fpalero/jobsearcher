@@ -3,6 +3,7 @@ from app.core.data_unified_repository import (
     get_applicable_jobs,
     get_saved_jobs,
     get_applied_jobs,
+    get_not_applied_jobs,
     get_total_jobs_count,
 )
 from app.application.dtos.jobs_dto import JobDTO
@@ -14,6 +15,8 @@ def get_job_offers(limit: int = 100, skip: int = 0, applicable: bool | None = No
         docs = get_saved_jobs(limit=limit, skip=skip)
     elif applied is True:
         docs = get_applied_jobs(limit=limit, skip=skip)
+    elif applied is False:
+        docs = get_not_applied_jobs(limit=limit, skip=skip)
     elif applicable is True:
         docs = get_applicable_jobs(limit=limit, skip=skip)
     else:

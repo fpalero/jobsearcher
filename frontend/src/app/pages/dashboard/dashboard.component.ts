@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   jobs: Job[] = [];
   selectedJob: Job | null = null;
   loading = true;
-  filterMode: FilterMode = 'all';
+  filterMode: FilterMode = 'not-applied';
   showFeedbackForm = false;
   feedbackReasons: string[] = [];
   private sub: Subscription | null = null;
@@ -66,11 +66,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return this.filterMode === 'applied';
   }
 
+  get isNotAppliedView(): boolean {
+    return this.filterMode === 'not-applied';
+  }
+
   private loadJobs(mode: FilterMode) {
     this.loading = true;
     const applicable = mode === 'applicable' || mode === 'applied' ? true : undefined;
     const saved = mode === 'saved' ? true : undefined;
-    const applied = mode === 'applied' ? true : undefined;
+    const applied = mode === 'applied' ? true : mode === 'not-applied' ? false : undefined;
     this.jobService.getJobs(100, 0, applicable, saved, applied).subscribe({
       next: (res) => {
         this.jobs = res.data;
