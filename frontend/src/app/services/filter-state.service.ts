@@ -11,6 +11,9 @@ export class FilterStateService {
   private modeSubject = new BehaviorSubject<FilterMode>('not-applied');
   filterMode$: Observable<FilterMode> = this.modeSubject.asObservable();
 
+  private sourcesSubject = new BehaviorSubject<string[]>([]);
+  sources$: Observable<string[]> = this.sourcesSubject.asObservable();
+
   setApplicable(value: boolean | undefined) {
     this.applicableSubject.next(value);
     if (value === true) this.modeSubject.next('applicable');
@@ -46,5 +49,22 @@ export class FilterStateService {
 
   resetToDefault() {
     this.setMode('not-applied');
+  }
+
+  setSources(sources: string[]) {
+    this.sourcesSubject.next(sources);
+  }
+
+  getSources(): string[] {
+    return this.sourcesSubject.value;
+  }
+
+  toggleSource(source: string) {
+    const current = this.sourcesSubject.value;
+    if (current.includes(source)) {
+      this.sourcesSubject.next(current.filter(s => s !== source));
+    } else {
+      this.sourcesSubject.next([...current, source]);
+    }
   }
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, combineLatest } from 'rxjs';
 import { Job } from '../../models/job.model';
+import { Source } from '../../models/source.model';
 import { JobService } from '../../services/job.service';
+import { SourceService } from '../../services/source.service';
 import { FilterStateService, FilterMode } from '../../services/filter-state.service';
 import { JobCardComponent } from '../../components/job-card/job-card.component';
 import { JobDetailModalComponent } from '../../components/job-detail-modal/job-detail-modal.component';
@@ -21,8 +23,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   filterMode: FilterMode = 'not-applied';
   showFeedbackForm = false;
   feedbackReasons: string[] = [];
+
+  availableSources: Source[] = [];
+  selectedSources: string[] = [];
+  showSourceDropdown = false;
+
   private sub: Subscription | null = null;
   private routeSub: Subscription | null = null;
+  private sourceSub: Subscription | null = null;
 
   allFeedbackReasons = [
     'Missing required skills',
@@ -32,15 +40,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(
     private jobService: JobService,
+    private sourceService: SourceService,
     private filterState: FilterStateService,
     private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
-    this.sub = this.filterState.filterMode$.subscribe(mode => {
-      this.filterMode = mode;
-      this.loadJobs(mode);
+    this.sourceService.getSources().subscribe(res => {
+      this.availableSources = res.data;
     });
+
+    this.sourceSub = this.filterState.sources$.subscribe(sources => {
+      this.selectedSources = sources;
+    });
+
+    this.sub = combineLatest([
+      this.filterState.filterMode$,
+      this.filterState.sources$,
+    ]).subscribe(([mode, sources]) => {
+      this.filterMode = mode;
+      this.loadJobs(mode, sources);
+    });
+
     this.routeSub = this.route.queryParams.subscribe(params => {
       const mode = params['mode'] as FilterMode | undefined;
       if (mode) {
@@ -52,6 +73,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub?.unsubscribe();
     this.routeSub?.unsubscribe();
+    this.sourceSub?.unsubscribe();
   }
 
   get filterActive(): boolean {
@@ -78,12 +100,25 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return this.filterMode === 'not-interested';
   }
 
-  private loadJobs(mode: FilterMode) {
+  toggleSource(sourceName: string) {
+    this.filterState.toggleSource(sourceName);
+  }
+
+  isSourceSelected(sourceName: string): boolean {
+    return this.selectedSources.includes(sourceName);
+  }
+
+  clearSources() {
+    this.filterState.setSources([]);
+  }
+
+  private loadJobs(mode: FilterMode, sources: string[]) {
     this.loading = true;
     const applicable = mode === 'applicable' || mode === 'applied' ? true : undefined;
     const saved = mode === 'saved' ? true : undefined;
     const applied = mode === 'applied' ? true : mode === 'not-applied' ? false : undefined;
-    this.jobService.getJobs(100, 0, applicable, saved, applied).subscribe({
+    const sourceParam = sources.length > 0 ? sources : undefined;
+    this.jobService.getJobs(100, 0, applicable, saved, applied, sourceParam).subscribe({
       next: (res) => {
         let jobs = res.data;
         if (mode === 'not-applied') {

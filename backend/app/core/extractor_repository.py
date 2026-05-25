@@ -7,7 +7,7 @@ from pymongo import MongoClient, errors
 
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
-MONGO_URI = os.getenv(
+MONGO_URI = os.getenv("MONGODB_URL") or os.getenv(
     "MONGO_URI", "mongodb://midzospa:3VcdcelzsTWGNkApcA6x8PsW@localhost:27017/jobsearcher?authSource=admin"
 )
 

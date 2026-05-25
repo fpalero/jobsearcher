@@ -21,11 +21,33 @@
           @else {Based on your profile and skills.}
         </p>
       </div>
-      <div class="flex gap-sm">
-        <button class="flex items-center gap-xs px-md py-sm bg-white border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors">
-          <span class="material-symbols-outlined text-body-md">tune</span>
-          <span class="text-label-md">Filters</span>
+      <div class="flex gap-sm items-center relative">
+        <button class="flex items-center gap-xs px-md py-sm bg-white border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors relative" (click)="showSourceDropdown = !showSourceDropdown">
+          <span class="material-symbols-outlined text-body-md">database</span>
+          <span class="text-label-md">{{ selectedSources.length > 0 ? selectedSources.length + ' selected' : 'Sources' }}</span>
+          @if (selectedSources.length > 0) {
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-primary text-on-primary text-[10px] font-bold rounded-full flex items-center justify-center">{{ selectedSources.length }}</span>
+          }
         </button>
+
+        @if (showSourceDropdown) {
+          <div class="fixed inset-0 z-40" (click)="showSourceDropdown = false"></div>
+          <div class="absolute top-full right-0 mt-1 bg-white border border-outline-variant rounded-xl shadow-lg z-50 min-w-[200px] p-sm" (click)="$event.stopPropagation()">
+            <div class="flex items-center justify-between px-sm py-xs mb-xs">
+              <span class="text-label-md font-bold text-on-surface">Filter by source</span>
+              @if (selectedSources.length > 0) {
+                <button class="text-label-sm text-primary hover:underline" (click)="clearSources()">Clear</button>
+              }
+            </div>
+            @for (source of availableSources; track source.name) {
+              <label class="flex items-center gap-md px-sm py-xs rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+                <input type="checkbox" [checked]="isSourceSelected(source.name)" (change)="toggleSource(source.name)" class="w-4 h-4 accent-primary">
+                <span class="text-body-md text-on-surface">{{ source.label }}</span>
+              </label>
+            }
+          </div>
+        }
+
         <button class="flex items-center gap-xs px-md py-sm bg-white border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors">
           <span class="text-label-md">Sort by: Relevancy</span>
         </button>

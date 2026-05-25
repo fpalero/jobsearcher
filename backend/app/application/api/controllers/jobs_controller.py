@@ -23,8 +23,10 @@ async def get_jobs(
     applicable: bool | None = Query(None),
     saved: bool | None = Query(None),
     applied: bool | None = Query(None),
+    sources: str | None = Query(None),
 ):
-    jobs, total = get_job_offers(limit=limit, skip=skip, applicable=applicable, saved=saved, applied=applied)
+    sources_list = sources.split(",") if sources else None
+    jobs, total = get_job_offers(limit=limit, skip=skip, applicable=applicable, saved=saved, applied=applied, sources=sources_list)
     return {
         "data": jobs,
         "total": total,

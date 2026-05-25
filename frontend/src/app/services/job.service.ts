@@ -19,7 +19,7 @@ export class JobService {
 
   constructor(private http: HttpClient) {}
 
-  getJobs(limit = 100, skip = 0, applicable?: boolean, saved?: boolean, applied?: boolean): Observable<JobsResponse> {
+  getJobs(limit = 100, skip = 0, applicable?: boolean, saved?: boolean, applied?: boolean, sources?: string[]): Observable<JobsResponse> {
     let url = `${this.apiUrl}/?limit=${limit}&skip=${skip}`;
     if (applicable !== undefined) {
       url += `&applicable=${applicable}`;
@@ -29,6 +29,9 @@ export class JobService {
     }
     if (applied !== undefined) {
       url += `&applied=${applied}`;
+    }
+    if (sources && sources.length > 0) {
+      url += `&sources=${sources.join(',')}`;
     }
     return this.http.get<JobsResponse>(url).pipe(
       catchError(() => of({ data: MOCK_JOBS, total: MOCK_JOBS.length, limit, skip }))

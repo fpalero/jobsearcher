@@ -15,6 +15,19 @@ client = MongoClient(MONGO_URI)
 db = client["jobsearcher"]
 unified_jobs_collection = db["unified_jobs"]
 
+SOURCE_LABEL_MAP = {
+    "linkedin": "LinkedIn",
+    "jsearch": "JSearch",
+    "activejobsdb": "ActiveJobsDB",
+    "serpapi": "SerpApi",
+}
+
+
+def _map_sources(sources: list[str] | None) -> list[str] | None:
+    if not sources:
+        return None
+    return [SOURCE_LABEL_MAP.get(s, s) for s in sources]
+
 
 def store_unified_results(results, source, role_query):
     if not results:
@@ -33,8 +46,12 @@ def store_unified_results(results, source, role_query):
         print(f"  -> Almacenados {inserted} (saltados {len(docs) - inserted} duplicados) de {source}")
 
 
-def get_all_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
-    cursor = unified_jobs_collection.find().sort("match", -1).skip(skip).limit(limit)
+def get_all_jobs(limit: int = 100, skip: int = 0, sources: list[str] | None = None) -> list[dict]:
+    query = {}
+    mapped = _map_sources(sources)
+    if mapped:
+        query["_source"] = {"$in": mapped}
+    cursor = unified_jobs_collection.find(query).sort([("match", -1), ("posted_at_timestamp", -1)]).skip(skip).limit(limit)
     return list(cursor)
 
 
@@ -48,16 +65,23 @@ def get_jobs_by_query(query: str, limit: int = 100, skip: int = 0) -> list[dict]
     return list(cursor)
 
 
-def get_total_jobs_count(applicable: bool | None = None) -> int:
+def get_total_jobs_count(applicable: bool | None = None, sources: list[str] | None = None) -> int:
     query = {}
     if applicable is not None:
         query["applicable"] = applicable
+    mapped = _map_sources(sources)
+    if mapped:
+        query["_source"] = {"$in": mapped}
     return unified_jobs_collection.count_documents(query)
 
 
-def get_applicable_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
+def get_applicable_jobs(limit: int = 100, skip: int = 0, sources: list[str] | None = None) -> list[dict]:
+    query: dict = {"applicable": True}
+    mapped = _map_sources(sources)
+    if mapped:
+        query["_source"] = {"$in": mapped}
     cursor = (
-        unified_jobs_collection.find({"applicable": True})
+        unified_jobs_collection.find(query)
         .sort("match", -1)
         .skip(skip)
         .limit(limit)
@@ -95,9 +119,13 @@ def submit_job_feedback(job_id: str, rating: int, reasons: list[str] | None = No
     return result.modified_count > 0 or result.matched_count > 0
 
 
-def get_saved_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
+def get_saved_jobs(limit: int = 100, skip: int = 0, sources: list[str] | None = None) -> list[dict]:
+    query: dict = {"saved": True}
+    mapped = _map_sources(sources)
+    if mapped:
+        query["_source"] = {"$in": mapped}
     cursor = (
-        unified_jobs_collection.find({"saved": True})
+        unified_jobs_collection.find(query)
         .sort("match", -1)
         .skip(skip)
         .limit(limit)
@@ -105,9 +133,13 @@ def get_saved_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
     return list(cursor)
 
 
-def get_not_applied_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
+def get_not_applied_jobs(limit: int = 100, skip: int = 0, sources: list[str] | None = None) -> list[dict]:
+    query: dict = {"$or": [{"applied": False}, {"applied": {"$exists": False}}]}
+    mapped = _map_sources(sources)
+    if mapped:
+        query["_source"] = {"$in": mapped}
     cursor = (
-        unified_jobs_collection.find({"$or": [{"applied": False}, {"applied": {"$exists": False}}]})
+        unified_jobs_collection.find(query)
         .sort("match", -1)
         .skip(skip)
         .limit(limit)
@@ -115,9 +147,13 @@ def get_not_applied_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
     return list(cursor)
 
 
-def get_applied_jobs(limit: int = 100, skip: int = 0) -> list[dict]:
+def get_applied_jobs(limit: int = 100, skip: int = 0, sources: list[str] | None = None) -> list[dict]:
+    query: dict = {"applied": True}
+    mapped = _map_sources(sources)
+    if mapped:
+        query["_source"] = {"$in": mapped}
     cursor = (
-        unified_jobs_collection.find({"applied": True})
+        unified_jobs_collection.find(query)
         .sort("applied_at", -1)
         .skip(skip)
         .limit(limit)
