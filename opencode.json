@@ -44,6 +44,18 @@
         "--header",
         "x-api-key: ${RAPID_API_KEY}"
       ]
+    },
+    "RapidAPI Hub - Active Jobs DB": {
+      "type": "local",
+      "command": [
+        "npx",
+        "mcp-remote",
+        "https://mcp.rapidapi.com",
+        "--header",
+        "x-api-host: active-jobs-db.p.rapidapi.com",
+        "--header",
+        "x-api-key: 85cfc3de26mshfabb3d31c657479p185ef8jsnee7d232d48b5"
+      ]
     }
   }
 }

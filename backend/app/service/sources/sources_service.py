@@ -1,7 +1,11 @@
 from datetime import datetime, timezone
 from app.core.data_unified_repository import unified_jobs_collection
 from app.service.extractors.data_ingestion import run_ingestion
-from app.service.extractors.jsearch.jsearch_data_ingestion_config import RESOURCES
+from app.service.extractors.jsearch.jsearch_data_ingestion_config import RESOURCES as JSEARCH_RESOURCES
+from app.service.extractors.linkedin.linkedin_data_ingestion_config import RESOURCES as LINKEDIN_RESOURCES
+from app.service.extractors.activejobsdb.activejobsdb_data_ingestion_config import RESOURCES as ACTIVEJOBSDB_RESOURCES
+
+RESOURCES = {**JSEARCH_RESOURCES, **LINKEDIN_RESOURCES, **ACTIVEJOBSDB_RESOURCES}
 
 def get_sources():
     pipelines = [
@@ -22,7 +26,16 @@ def get_sources():
             "total_records": unified_jobs_collection.count_documents({"_source": "JSearch"}),
             "last_sync": _get_last_sync("JSearch"),
             "status": "idle",
-        }
+        },
+        {
+            "name": "activejobsdb",
+            "label": "ActiveJobsDB",
+            "description": "Real-time job database",
+            "query": "software engineer germany",
+            "total_records": unified_jobs_collection.count_documents({"_source": "ActiveJobsDB"}),
+            "last_sync": _get_last_sync("ActiveJobsDB"),
+            "status": "idle",
+        },
         # {
         #     "name": "serpapi",
         #     "label": "SerpApi",

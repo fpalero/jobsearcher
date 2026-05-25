@@ -1,0 +1,40 @@
+[
+  {
+    "id": "test-001",
+    "title": "Senior Software Engineer, Java",
+    "organization": "Test Company GmbH",
+    "organization_url": "https://www.linkedin.com/company/test-company",
+    "url": "https://linkedin.com/jobs/view/senior-software-engineer-java-at-test-company-1234567890",
+    "date_posted": "2026-05-25T10:00:00",
+    "locations_derived": ["Berlin, Germany"],
+    "countries_derived": ["Germany"],
+    "remote_derived": true,
+    "employment_type": ["FULL_TIME"],
+    "description_text": "We are looking for a Senior Software Engineer skilled in Java, Spring Boot, and microservices.",
+    "salary_raw": null,
+    "organization_logo": null,
+    "source_domain": "linkedin.com",
+    "seniority": "Mid-Senior level",
+    "cities_derived": ["Berlin"],
+    "regions_derived": ["Berlin"]
+  },
+  {
+    "id": "test-002",
+    "title": "Software Engineer - Frontend",
+    "organization": "Tech Solutions SL",
+    "organization_url": "https://www.linkedin.com/company/tech-solutions",
+    "url": "https://linkedin.com/jobs/view/software-engineer-frontend-at-tech-solutions-1234567891",
+    "date_posted": "2026-05-24T14:30:00",
+    "locations_derived": ["Madrid, Community of Madrid, Spain"],
+    "countries_derived": ["Spain"],
+    "remote_derived": false,
+    "employment_type": ["FULL_TIME"],
+    "description_text": "Frontend developer with React and TypeScript experience for our Barcelona office.",
+    "salary_raw": null,
+    "organization_logo": "https://media.licdn.com/dms/image/v2/test/logo",
+    "source_domain": "linkedin.com",
+    "seniority": "Mid-Senior level",
+    "cities_derived": ["Madrid"],
+    "regions_derived": ["Madrid"]
+  }
+]

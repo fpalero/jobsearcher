@@ -26,7 +26,7 @@
           <div class="flex items-start justify-between mb-md">
             <div class="flex items-center gap-md">
               <div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary text-[24px]">{{ source.name === 'linkedin' ? 'business_center' : source.name === 'jsearch' ? 'travel_explore' : 'public' }}</span>
+                <span class="material-symbols-outlined text-primary text-[24px]">{{ source.name === 'linkedin' ? 'business_center' : source.name === 'jsearch' ? 'travel_explore' : source.name === 'activejobsdb' ? 'database' : 'public' }}</span>
               </div>
               <div>
                 <h3 class="text-headline-md text-on-surface">{{ source.label }}</h3>

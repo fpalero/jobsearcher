@@ -21,7 +21,7 @@ def run_ingestion(resources, sources):
             print(f"[{source}] Encontrados: {len(results)}")
 
             if results:
-                source_label = {"linkedin": "LinkedIn", "jsearch": "JSearch"}.get(source.lower(), source.capitalize())
+                source_label = {"linkedin": "LinkedIn", "jsearch": "JSearch", "activejobsdb": "ActiveJobsDB"}.get(source.lower(), source.capitalize())
                 store_results(results, source_label, query)
                 dtos = [converter(r, query) for r in results]
                 store_unified_results([d.to_dict() for d in dtos], source_label, query)

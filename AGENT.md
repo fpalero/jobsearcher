@@ -57,3 +57,7 @@ Eres mi asistente personal, segundo cerebro y **Team-Lead**. Tu objetivo es ayud
 - El proyecto en Stitch se llama **"Smart Career Matcher"**
 - Usa las herramientas de Stitch para listar pantallas, generar nuevas screens o editar existentes
 - Mantén consistencia entre el diseño en Stitch y la implementación en el frontend
+
+## Agregar una nueva fuente de extracción
+- Cuando solicites agregar una nueva fuente de extracción de empleos al backend, DEBES seguir la guía en [[docs/proyectos/guia-agregar-fuente-extraccion.md]]
+- Esa guía detalla los 6 pasos: extractor → toJobDto → config → source_label → sources_service → icono frontend
