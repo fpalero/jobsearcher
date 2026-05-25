@@ -1,0 +1,40 @@
+[
+  {
+    "id": "test-001",
+    "title": "Senior Software Engineer",
+    "slug": "senior-software-engineer-001",
+    "startup": {
+      "name": "TechStartup GmbH",
+      "logo": "https://example.com/logo.png",
+      "website_url": "https://techstartup.com"
+    },
+    "description": "We are looking for a Senior Software Engineer skilled in React, Node.js, and AWS. Remote-first culture.",
+    "remote": true,
+    "salary_min": 80000,
+    "salary_max": 120000,
+    "jobType": "full-time",
+    "location": "Berlin, Germany",
+    "date": "2026-05-25T10:00:00Z",
+    "url": "https://wellfound.com/jobs/123",
+    "currency": "$"
+  },
+  {
+    "id": "test-002",
+    "title": "Frontend Developer",
+    "slug": "frontend-developer-002",
+    "startup": {
+      "name": "WebStartup BV",
+      "logo": null,
+      "website_url": null
+    },
+    "description": "Frontend developer with React and TypeScript experience.",
+    "remote": true,
+    "salary_min": 60000,
+    "salary_max": 90000,
+    "jobType": "full-time",
+    "location": "Amsterdam, Netherlands",
+    "date": "2026-05-24T14:30:00Z",
+    "url": "https://wellfound.com/jobs/456",
+    "currency": "$"
+  }
+]

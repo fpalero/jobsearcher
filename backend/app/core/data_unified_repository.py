@@ -19,6 +19,7 @@ SOURCE_LABEL_MAP = {
     "linkedin": "LinkedIn",
     "jsearch": "JSearch",
     "activejobsdb": "ActiveJobsDB",
+    "startupremotejobs": "StartupRemoteJobs",
     "serpapi": "SerpApi",
 }
 

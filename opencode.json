@@ -56,6 +56,18 @@
         "--header",
         "x-api-key: 85cfc3de26mshfabb3d31c657479p185ef8jsnee7d232d48b5"
       ]
+    },
+    "RapidAPI Hub - Startup Remote Jobs API": {
+      "type": "local",
+      "command": [
+        "npx",
+        "mcp-remote",
+        "https://mcp.rapidapi.com",
+        "--header",
+        "x-api-host: startup-remote-jobs-api.p.rapidapi.com",
+        "--header",
+        "x-api-key: 85cfc3de26mshfabb3d31c657479p185ef8jsnee7d232d48b5"
+      ]
     }
   }
 }

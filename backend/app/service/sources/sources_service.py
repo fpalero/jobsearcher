@@ -1,11 +1,13 @@
 from datetime import datetime, timezone
 from app.core.data_unified_repository import unified_jobs_collection
 from app.service.extractors.data_ingestion import run_ingestion
+from app.service.transformation.transformation import run_pipeline
 from app.service.extractors.jsearch.jsearch_data_ingestion_config import RESOURCES as JSEARCH_RESOURCES
 from app.service.extractors.linkedin.linkedin_data_ingestion_config import RESOURCES as LINKEDIN_RESOURCES
 from app.service.extractors.activejobsdb.activejobsdb_data_ingestion_config import RESOURCES as ACTIVEJOBSDB_RESOURCES
+from app.service.extractors.startupremotejobs.startupremotejobs_data_ingestion_config import RESOURCES as STARTUPREMOTEJOBS_RESOURCES
 
-RESOURCES = {**JSEARCH_RESOURCES, **LINKEDIN_RESOURCES, **ACTIVEJOBSDB_RESOURCES}
+RESOURCES = {**JSEARCH_RESOURCES, **LINKEDIN_RESOURCES, **ACTIVEJOBSDB_RESOURCES, **STARTUPREMOTEJOBS_RESOURCES}
 
 def get_sources():
     pipelines = [
@@ -36,6 +38,15 @@ def get_sources():
             "last_sync": _get_last_sync("ActiveJobsDB"),
             "status": "idle",
         },
+        {
+            "name": "startupremotejobs",
+            "label": "StartupRemoteJobs",
+            "description": "Startup & remote jobs",
+            "query": "software engineer remote",
+            "total_records": unified_jobs_collection.count_documents({"_source": "StartupRemoteJobs"}),
+            "last_sync": _get_last_sync("StartupRemoteJobs"),
+            "status": "idle",
+        },
         # {
         #     "name": "serpapi",
         #     "label": "SerpApi",
@@ -55,10 +66,13 @@ def trigger_sync(source_name: str) -> dict:
         raise ValueError(f"Source '{source_name}' does not exist. Available: {', '.join(valid)}")
 
     run_ingestion(RESOURCES, [source_name])
+
+    run_pipeline()
+
     return {
         "source": source_name,
-        "status": "started",
-        "message": f"Sync triggered for {source_name}",
+        "status": "completed",
+        "message": f"Sync and pipeline completed for {source_name}",
     }
 
 
