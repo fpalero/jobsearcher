@@ -10,8 +10,12 @@ RESOURCES = {
                 "query": "Software Engineer",
                 "params": {
                     "remote": True,
-                    "jobType": "full-time",
-                    "description": "Java OR Kotlin OR Spring Boot",
+                },
+            },
+            {
+                "query": "Backend Engineer",
+                "params": {
+                    "remote": True,
                 },
             },
         ],

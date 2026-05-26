@@ -54,12 +54,17 @@ def fetch_startupremotejobs_jobs(
 
     try:
         resp = requests.get(BASE_URL, headers=HEADERS, params=params)
+        if not resp.ok:
+            print(f"Error en StartupRemoteJobs para '{title}': HTTP {resp.status_code} - {resp.text[:500]}")
+            return []
         data = resp.json()
+        print(f"[StartupRemoteJobs] Response for '{title}': HTTP {resp.status_code}, type={type(data).__name__}, preview={str(data)[:300]}")
         if isinstance(data, list):
             return data[:limit]
         if isinstance(data, dict) and "results" in data:
             return data["results"][:limit]
+        print(f"[StartupRemoteJobs] Unexpected format for '{title}': {str(data)[:500]}")
         return []
     except Exception as e:
-        print(f"Error en StartupRemoteJobs para '{title}': {e}")
+        print(f"[StartupRemoteJobs] Exception for '{title}': {e}")
         return []
