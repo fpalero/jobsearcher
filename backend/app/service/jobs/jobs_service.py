@@ -5,9 +5,14 @@ from app.core.data_unified_repository import (
     get_applied_jobs,
     get_not_applied_jobs,
     get_total_jobs_count,
+    get_jobs_counts,
 )
 from app.application.dtos.jobs_dto import JobDTO
 from app.service.transformation.job_converter import job_dto_to_fe_response
+
+
+def get_job_counts() -> dict:
+    return get_jobs_counts()
 
 
 def get_job_offers(limit: int = 100, skip: int = 0, applicable: bool | None = None, saved: bool | None = None, applied: bool | None = None, sources: list[str] | None = None) -> tuple[list[dict], int]:

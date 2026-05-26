@@ -2,7 +2,7 @@ import logging
 
 from fastapi import APIRouter, Query, Body, HTTPException
 from fastapi.responses import FileResponse
-from app.service.jobs.jobs_service import get_job_offers
+from app.service.jobs.jobs_service import get_job_offers, get_job_counts
 from app.service.jobs.tailored_cv import generate_tailored_pdf, JobNotFoundError, TailoredCVError
 from app.service.jobs.cover_letter import generate_cover_letter_pdf
 from app.core.data_unified_repository import (
@@ -14,6 +14,11 @@ from app.core.data_unified_repository import (
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
+
+
+@router.get("/counts")
+async def jobs_counts():
+    return get_job_counts()
 
 
 @router.get("/")

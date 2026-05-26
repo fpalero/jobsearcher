@@ -20,6 +20,7 @@ SOURCE_LABEL_MAP = {
     "jsearch": "JSearch",
     "activejobsdb": "ActiveJobsDB",
     "startupremotejobs": "StartupRemoteJobs",
+    "manual": "manual",
     "serpapi": "SerpApi",
 }
 
@@ -146,6 +147,25 @@ def get_not_applied_jobs(limit: int = 100, skip: int = 0, sources: list[str] | N
         .limit(limit)
     )
     return list(cursor)
+
+
+def get_jobs_counts() -> dict:
+    total = unified_jobs_collection.count_documents({})
+    available = unified_jobs_collection.count_documents(
+        {"$or": [{"applied": False}, {"applied": {"$exists": False}}]}
+    )
+    applied = unified_jobs_collection.count_documents({"applied": True})
+    saved = unified_jobs_collection.count_documents({"saved": True})
+    interested = unified_jobs_collection.count_documents({"feedback.rating": 1})
+    not_interested = unified_jobs_collection.count_documents({"feedback.rating": -1})
+    return {
+        "total": total,
+        "available": available,
+        "applied": applied,
+        "saved": saved,
+        "interested": interested,
+        "not_interested": not_interested,
+    }
 
 
 def get_applied_jobs(limit: int = 100, skip: int = 0, sources: list[str] | None = None) -> list[dict]:

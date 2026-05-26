@@ -11,6 +11,15 @@ export interface JobsResponse {
   skip: number;
 }
 
+export interface JobCounts {
+  total: number;
+  available: number;
+  applied: number;
+  saved: number;
+  interested: number;
+  not_interested: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +27,12 @@ export class JobService {
   private apiUrl = '/api/jobs';
 
   constructor(private http: HttpClient) {}
+
+  getCounts(): Observable<JobCounts> {
+    return this.http.get<JobCounts>(`${this.apiUrl}/counts`).pipe(
+      catchError(() => of({ total: 0, available: 0, applied: 0, saved: 0, interested: 0, not_interested: 0 }))
+    );
+  }
 
   getJobs(limit = 100, skip = 0, applicable?: boolean, saved?: boolean, applied?: boolean, sources?: string[]): Observable<JobsResponse> {
     let url = `${this.apiUrl}/?limit=${limit}&skip=${skip}`;

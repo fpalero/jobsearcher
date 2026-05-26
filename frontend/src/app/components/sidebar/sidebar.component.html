@@ -6,23 +6,28 @@
   <nav class="flex flex-col gap-sm flex-1">
     <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'not-applied' || activeItem === 'all-jobs'" [class.text-on-primary-container]="activeItem === 'not-applied' || activeItem === 'all-jobs'" [class.text-on-surface-variant]="activeItem !== 'not-applied' && activeItem !== 'all-jobs'" [class.hover:bg-surface-variant]="activeItem !== 'not-applied' && activeItem !== 'all-jobs'" routerLink="/dashboard" [queryParams]="{mode: 'not-applied'}" (click)="showAllJobs()">
       <span class="material-symbols-outlined">work</span>
-      <span class="text-label-md">Available</span>
+      <span class="flex-1 text-label-md">Available</span>
+      <span class="text-label-sm text-on-surface-variant">{{counts.available}}</span>
     </a>
     <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'applied'" [class.text-on-primary-container]="activeItem === 'applied'" [class.text-on-surface-variant]="activeItem !== 'applied'" [class.hover:bg-surface-variant]="activeItem !== 'applied'" routerLink="/dashboard" [queryParams]="{mode: 'applied'}" (click)="showApplied()">
       <span class="material-symbols-outlined">assignment_turned_in</span>
-      <span class="text-label-md">Applied</span>
+      <span class="flex-1 text-label-md">Applied</span>
+      <span class="text-label-sm text-on-surface-variant">{{counts.applied}}</span>
     </a>
     <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'saved'" [class.text-on-primary-container]="activeItem === 'saved'" [class.text-on-surface-variant]="activeItem !== 'saved'" [class.hover:bg-surface-variant]="activeItem !== 'saved'" routerLink="/dashboard" [queryParams]="{mode: 'saved'}" (click)="showSaved()">
       <span class="material-symbols-outlined">bookmark</span>
-      <span class="text-label-md">Saved</span>
+      <span class="flex-1 text-label-md">Saved</span>
+      <span class="text-label-sm text-on-surface-variant">{{counts.saved}}</span>
     </a>
     <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'interested'" [class.text-on-primary-container]="activeItem === 'interested'" [class.text-on-surface-variant]="activeItem !== 'interested'" [class.hover:bg-surface-variant]="activeItem !== 'interested'" routerLink="/dashboard" [queryParams]="{mode: 'interested'}" (click)="showInterested()">
       <span class="material-symbols-outlined">thumb_up</span>
-      <span class="text-label-md">Interested</span>
+      <span class="flex-1 text-label-md">Interested</span>
+      <span class="text-label-sm text-on-surface-variant">{{counts.interested}}</span>
     </a>
     <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'not-interested'" [class.text-on-primary-container]="activeItem === 'not-interested'" [class.text-on-surface-variant]="activeItem !== 'not-interested'" [class.hover:bg-surface-variant]="activeItem !== 'not-interested'" routerLink="/dashboard" [queryParams]="{mode: 'not-interested'}" (click)="showNotInterested()">
       <span class="material-symbols-outlined">thumb_down</span>
-      <span class="text-label-md">Not Interested</span>
+      <span class="flex-1 text-label-md">Not Interested</span>
+      <span class="text-label-sm text-on-surface-variant">{{counts.not_interested}}</span>
     </a>
     <hr class="border-t border-outline-variant/50 my-sm">
     <a class="flex items-center gap-md px-md py-sm rounded-xl transition-all cursor-pointer" [class.bg-primary-container]="activeItem === 'sources'" [class.text-on-primary-container]="activeItem === 'sources'" [class.text-on-surface-variant]="activeItem !== 'sources'" [class.hover:bg-surface-variant]="activeItem !== 'sources'" routerLink="/sources">
