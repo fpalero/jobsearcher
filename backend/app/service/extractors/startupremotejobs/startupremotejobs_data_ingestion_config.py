@@ -10,6 +10,8 @@ RESOURCES = {
                 "query": "Software Engineer",
                 "params": {
                     "remote": True,
+                    "jobType": "Full-time",
+                    "primaryRoleTitle": "Software Engineer",
                 },
             },
         ],
