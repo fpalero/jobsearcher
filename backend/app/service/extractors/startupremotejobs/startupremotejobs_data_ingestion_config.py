@@ -12,12 +12,6 @@ RESOURCES = {
                     "remote": True,
                 },
             },
-            {
-                "query": "Backend Engineer",
-                "params": {
-                    "remote": True,
-                },
-            },
         ],
     },
 }
